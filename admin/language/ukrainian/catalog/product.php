@@ -18,7 +18,12 @@ License http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 Ask a question http://forum.opencart.ua
 
 ************************************************************************************************************************/
-
+//ocshop quick edit
+$_['text_new_price']            = 'Ціна успішно змінена. Нова ціна: ';
+$_['text_new_quantity']         = 'Кількість успішно змінено. Нова кількість: ';
+$_['text_new_model']            = 'Модель успішно змінена. Нове значення: ';
+$_['text_new_name']             = 'Назва успішно змінено. Нове значення: ';
+//ocshop quick edit
 $_['column_model'] = 'Модель'; #35629
 $_['column_image'] = 'Зображення'; #35630
 $_['column_status'] = 'Статус'; #35631
@@ -35,6 +40,10 @@ $_['text_image_manager'] = 'Мендежер зображень'; #35641
 $_['text_option'] = 'Параметри'; #35642
 $_['text_option_value'] = 'Значення параметрів'; #35643
 $_['column_name'] = 'Назва товару'; #35644
+//ocshop filter product by category and manufacturer
+$_['column_category']           = 'Категорія';
+$_['column_manufacturer']       = 'Виробник';
+//ocshop filter product by category and manufacturer
 $_['column_quantity'] = 'Кількість'; #35645
 $_['entry_store'] = 'Магазини:'; #36167
 $_['column_action'] = 'Дія'; #36168

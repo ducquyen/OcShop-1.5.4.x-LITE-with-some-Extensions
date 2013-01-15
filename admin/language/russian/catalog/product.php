@@ -14,15 +14,19 @@ $_['text_option']            = 'Опция';
 $_['text_option_value']      = 'Значение опции';
 $_['text_percent']           = 'Процент';
 $_['text_amount']            = 'Фиксированная сумма';
-//ocshop
+//ocshop quick edit
 $_['text_new_price']            = 'Цена успешно изменена. Новая цена: ';
 $_['text_new_quantity']         = 'Количество успешно изменено. Новое количество: ';
 $_['text_new_model']            = 'Модель успешно изменена. Новое значение: ';
 $_['text_new_name']             = 'Название успешно изменено. Новое значение: ';
-//ocshop
+//ocshop quick edit
 
 // Column
 $_['column_name']            = 'Название товара';
+//ocshop filter product by category and manufacturer
+$_['column_category']           = 'Категория';
+$_['column_manufacturer']       = 'Производитель';
+//ocshop filter product by category and manufacturer
 $_['column_model']           = 'Модель';
 $_['column_image']           = 'Изображения';
 $_['column_price']           = 'Цена на сайте';

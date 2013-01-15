@@ -31,6 +31,18 @@
                 <?php } else { ?>
                 <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?></a>
                 <?php } ?></td>
+			  <!-- ocshop filter product by category and manufacturer -->
+			  <td class="left"><?php if ($sort == 'p.category') { ?>
+                <a href="<?php echo $sort_category; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_category; ?></a>
+                <?php } else { ?>
+                <a href="<?php echo $sort_category; ?>"><?php echo $column_category; ?></a>
+                <?php } ?></td>
+			  <td class="left"><?php if ($sort == 'p.manufacturer') { ?>
+                <a href="<?php echo $sort_manufacturer; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_manufacturer; ?></a>
+                <?php } else { ?>
+                <a href="<?php echo $sort_manufacturer; ?>"><?php echo $column_manufacturer; ?></a>
+                <?php } ?></td>	
+			  <!-- ocshop filter product by category and manufacturer -->
               <td class="left"><?php if ($sort == 'p.model') { ?>
                 <a href="<?php echo $sort_model; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_model; ?></a>
                 <?php } else { ?>
@@ -59,20 +71,37 @@
               <td></td>
               <td></td>
               <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" />
-			  <!-- ocshop -->
-				<select name="filter_category_id"  id="filter_category_id">				 
-                  <option value=""/>
-				  <?php 
-				  foreach($categories as $tmp){				  
-				  if ($filter_category_id == $tmp['category_id']) { ?>
-                  <option value="<?php echo $filter_category_id;?>" selected="selected"><?php echo $tmp['name'];?></option>
-                  <?php } else { ?>
-                  <option value="<?php echo $tmp['category_id'];?>"><?php echo $tmp['name']; ?></option>
-                  <?php }  
-				  }
-				  ?>				
-				</select></td>
-				<!-- ocshop -->
+			  </td>
+			  <!-- ocshop filter product by category and manufacturer -->
+			  <td><select name="filter_category" style="width: 170px;" onchange="filter();">
+                  <option value="0"></option>
+                  <?php $cat_selected = ''; ?>
+                  <?php if ($categories && count( $categories ) ) {                  
+                  foreach( $categories as $cat ){ ?>
+                  <?php if (!is_null($filter_category_id) && $filter_category_id && ( $filter_category_id == $cat['category_id'] ) ) { ?>
+                 	 <?php $cat_selected = $cat['name']; ?><option selected="selected" value="<?php echo $cat['category_id']; ?>"><?php echo $cat['name']; ?></option>
+                 <?php }else{ ?>
+                 	<option value="<?php echo $cat['category_id']; ?>"><?php echo $cat['name']; ?></option>
+                 <?php }?>
+                 <?php }
+                  } ?>
+                </select>                
+                </td>
+                <td><select name="filter_manufacturer" style="width: 90px;" onchange="filter();">
+                  <option value="0"></option>  
+                  <?php $man_selected = ''; ?>
+                  <?php if ($manufacturers && count( $manufacturers ) ) {                  
+                  foreach( $manufacturers as $man ){ ?>
+                  <?php if (!is_null($filter_manufacturer) && $filter_manufacturer && ( $filter_manufacturer == $man['manufacturer_id'] ) ) { ?>
+                 	 <?php $man_selected = $man['manufacturer_id']; ?><option selected="selected" value="<?php echo $man['manufacturer_id']; ?>"><?php echo $man['name']; ?></option>
+                 <?php }else{ ?>
+                 	<option value="<?php echo $man['manufacturer_id']; ?>"><?php echo $man['name']; ?></option>
+                 <?php }?>
+                 <?php }
+                  } ?>                
+                </select>                
+            </td>
+			  <!-- ocshop filter product by category and manufacturer -->
               <td><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" /></td>
               <td align="left"><input type="text" name="filter_price" value="<?php echo $filter_price; ?>" size="8"/></td>
               <td align="right"><input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" style="text-align: right;" /></td>
@@ -116,6 +145,16 @@
 			  
 			  
               <td class="left"><div id="<?php echo $product['product_id']; ?>" class="inlineEditn"><?php echo $product['name']; ?></div></td>
+			  <!-- ocshop filter product by category and manufacturer -->
+			  <td class="left"><?php if( $product['category'] ){
+              		foreach( $product['category'] as $category ){
+              			echo $category['name'] . "<br/>";
+              		}
+              }
+               ?>
+              </td>
+			<td class="left"><?php echo $product['manufacturer']; ?></td>
+			  <!-- ocshop filter product by category and manufacturer -->
               <td class="left"><div id="<?php echo $product['product_id']; ?>" class="inlineEditm"><?php echo $product['model']; ?></div></td>
               <td class="left"><?php if ($product['special']) { ?>
                 <span style="text-decoration: line-through;"><div id="<?php echo $product['product_id']; ?>" class="inlineEdit"><?php echo $product['price']; ?></div></span><br/>
@@ -164,6 +203,17 @@ function filter() {
 		url += '&filter_name=' + encodeURIComponent(filter_name);
 	}
 	
+	<!-- ocshop filter product by category and manufacturer -->
+	var filter_category = $('select[name=\'filter_category\']').val();
+			var filter_manufacturer = $('select[name=\'filter_manufacturer\']').val();
+			if (filter_manufacturer && parseInt( filter_manufacturer, 10 ) > 0 ) {
+				url += '&filter_manufacturer=' + encodeURIComponent(filter_manufacturer);
+			}	
+			if (filter_category && parseInt( filter_category, 10 ) > 0 ) {
+				url += '&filter_category_id=' + encodeURIComponent(filter_category) + '&filter_sub_category=true';
+			}
+	<!-- ocshop filter product by category and manufacturer -->
+	
 	var filter_model = $('input[name=\'filter_model\']').attr('value');
 	
 	if (filter_model) {
@@ -175,14 +225,6 @@ function filter() {
 	if (filter_price) {
 		url += '&filter_price=' + encodeURIComponent(filter_price);
 	}
-	
-	<!-- ocshop -->
-	var filter_category_id = $('select[name=\'filter_category_id\']').attr('value');
-							 
-							if (filter_category_id) {
-								url += '&filter_category_id=' + encodeURIComponent(filter_category_id);
-							}
-	<!-- ocshop -->
 	
 	var filter_quantity = $('input[name=\'filter_quantity\']').attr('value');
 	

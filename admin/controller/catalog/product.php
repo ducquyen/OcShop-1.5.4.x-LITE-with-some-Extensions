@@ -2,7 +2,7 @@
 class ControllerCatalogProduct extends Controller {
 	private $error = array();
 
-	//ocshop quick_changer
+	//ocshop quick edit
 	public function price() {
         if ($this->request->server['REQUEST_METHOD'] == 'POST') {
         $this->db->query("UPDATE " . DB_PREFIX . "product SET price = '" . (integer)$this->request->post['price'] . "' WHERE product_id = '" . (int)$this->request->post['product_id'] . "'");
@@ -42,7 +42,7 @@ class ControllerCatalogProduct extends Controller {
         $this->cache->delete('product');
         }
         }
-	//ocshop
+	//ocshop quick edit
      
   	public function index() {
 		$this->load->language('catalog/product');
@@ -71,6 +71,16 @@ class ControllerCatalogProduct extends Controller {
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 			}
+			
+			//ocshop filter product by category and manufacturer
+			if (isset($this->request->get['filter_manufacturer'])) {
+				$url .= '&filter_manufacturer=' . $this->request->get['filter_manufacturer'];
+			}
+			
+			if (isset($this->request->get['filter_category_id'])) {
+				$url .= '&filter_category_id=' . $this->request->get['filter_category_id'] . '&filter_sub_category=true';
+			}
+			//ocshop filter product by category and manufacturer
 		
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
@@ -87,12 +97,6 @@ class ControllerCatalogProduct extends Controller {
 			if (isset($this->request->get['filter_status'])) {
 				$url .= '&filter_status=' . $this->request->get['filter_status'];
 			}
-			
-			/* ocshop */
-									if (isset($this->request->get['filter_category_id'])) {
-										$url .= '&filter_category_id=' . $this->request->get['filter_category_id'];
-									}
-						/* ocshop */
 					
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
@@ -129,6 +133,16 @@ class ControllerCatalogProduct extends Controller {
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 			}
+			
+			//ocshop filter product by category and manufacturer
+			if (isset($this->request->get['filter_manufacturer'])) {
+				$url .= '&filter_manufacturer=' . $this->request->get['filter_manufacturer'];
+			}
+			
+			if (isset($this->request->get['filter_category_id'])) {
+				$url .= '&filter_category_id=' . $this->request->get['filter_category_id'] . '&filter_sub_category=true';
+			}
+			//ocshop filter product by category and manufacturer
 		
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
@@ -183,6 +197,16 @@ class ControllerCatalogProduct extends Controller {
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 			}
+			
+			//ocshop filter product by category and manufacturer
+			if (isset($this->request->get['filter_manufacturer'])) {
+				$url .= '&filter_manufacturer=' . $this->request->get['filter_manufacturer'];
+			}
+			
+			if (isset($this->request->get['filter_category_id'])) {
+				$url .= '&filter_category_id=' . $this->request->get['filter_category_id'] . '&filter_sub_category=true';
+			}
+			//ocshop filter product by category and manufacturer
 		
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
@@ -237,6 +261,16 @@ class ControllerCatalogProduct extends Controller {
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 			}
+			
+			//ocshop filter product by category and manufacturer
+			if (isset($this->request->get['filter_manufacturer'])) {
+				$url .= '&filter_manufacturer=' . $this->request->get['filter_manufacturer'];
+			}
+			
+			if (isset($this->request->get['filter_category_id'])) {
+				$url .= '&filter_category_id=' . $this->request->get['filter_category_id'] . '&filter_sub_category=true';
+			}
+			//ocshop filter product by category and manufacturer
 		
 			if (isset($this->request->get['filter_model'])) {
 				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
@@ -272,12 +306,33 @@ class ControllerCatalogProduct extends Controller {
     	$this->getList();
   	}
 	
-  	private function getList() {				
+  	private function getList() {
+		//ocshop filter product by category and manufacturer
+		$this->load->model('catalog/category');	
+			$this->load->model('catalog/manufacturer');			
+			$this->data['categories'] = $this->model_catalog_category->getCategories(0);
+			$m_sort = array( 'sort' => 'name', 'order' => 'ASC');
+			$this->data['manufacturers'] = $this->model_catalog_manufacturer->getManufacturers( $m_sort );
+		//ocshop filter product by category and manufacturer
 		if (isset($this->request->get['filter_name'])) {
 			$filter_name = $this->request->get['filter_name'];
 		} else {
 			$filter_name = null;
 		}
+		
+		//ocshop filter product by category and manufacturer
+		if (isset($this->request->get['filter_category_id'])) {
+				$filter_category_id = $this->request->get['filter_category_id'];
+		} else {
+				$filter_category_id = null;
+		}
+		
+		if (isset($this->request->get['filter_manufacturer'])) {
+				$filter_manufacturer = $this->request->get['filter_manufacturer'];
+		} else {
+				$filter_manufacturer = null;
+		}
+		//ocshop filter product by category and manufacturer
 
 		if (isset($this->request->get['filter_model'])) {
 			$filter_model = $this->request->get['filter_model'];
@@ -302,14 +357,6 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$filter_status = null;
 		}
-		
-		/* ocshop */
-								if (isset($this->request->get['filter_category_id'])) {
-									$filter_category_id = $this->request->get['filter_category_id'];
-								} else {
-									$filter_category_id = null;
-								}
-						/* ocshop */
 
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
@@ -334,6 +381,16 @@ class ControllerCatalogProduct extends Controller {
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
+		
+		//ocshop filter product by category and manufacturer
+			if (isset($this->request->get['filter_manufacturer'])) {
+				$url .= '&filter_manufacturer=' . $this->request->get['filter_manufacturer'];
+			}
+			
+			if (isset($this->request->get['filter_category_id'])) {
+				$url .= '&filter_category_id=' . $this->request->get['filter_category_id'] . '&filter_sub_category=true';
+			}
+			//ocshop filter product by category and manufacturer
 		
 		if (isset($this->request->get['filter_model'])) {
 			$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
@@ -380,21 +437,22 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['insert'] = $this->url->link('catalog/product/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['copy'] = $this->url->link('catalog/product/copy', 'token=' . $this->session->data['token'] . $url, 'SSL');	
 		$this->data['delete'] = $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		//ocshop
+		//ocshop button enabled and disabled
 		$this->data['enabled'] = $this->url->link('catalog/product/enable', 'token=' . $this->session->data['token'] . $url, 'SSL');
         $this->data['disabled'] = $this->url->link('catalog/product/disable', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		//ocshop
+		//ocshop button enabled and disabled
     	
 		$this->data['products'] = array();
 
 		$data = array(
-			'filter_name'	  => $filter_name, 
+			'filter_name'	  => $filter_name,
+			//ocshop filter product by category and manufacturer
+			'filter_category_id'	  => $filter_category_id,
+			'filter_manufacturer'	  => $filter_manufacturer,
+			//ocshop filter product by category and manufacturer
 			'filter_model'	  => $filter_model,
 			'filter_price'	  => $filter_price,
 			'filter_quantity' => $filter_quantity,
-			//ocshop
-			'filter_category_id' => $filter_category_id,
-			//ocshop
 			'filter_status'   => $filter_status,
 			'sort'            => $sort,
 			'order'           => $order,
@@ -433,8 +491,16 @@ class ControllerCatalogProduct extends Controller {
 					break;
 				}					
 			}
+			
+			//ocshop filter product by category and manufacturer
+			$category = $this->model_catalog_product->getProductCategoriesInfo( $result['product_id'] );
+			//ocshop filter product by category and manufacturer
 	
       		$this->data['products'][] = array(
+				//ocshop filter product by category and manufacturer
+				'category' => $category,
+				'manufacturer' => $result['manufacturer'],
+				//ocshop filter product by category and manufacturer
 				'product_id' => $result['product_id'],
 				'name'       => $result['name'],
 				'model'      => $result['model'],
@@ -454,7 +520,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');		
 		$this->data['text_no_results'] = $this->language->get('text_no_results');		
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');	
-		//ocshop
+		//ocshop quick edit
 		$this->data['text_new_price'] = $this->language->get('text_new_price');
 		$this->data['text_new_quantity'] = $this->language->get('text_new_quantity');
 		$this->data['text_new_model'] = $this->language->get('text_new_model');
@@ -464,10 +530,14 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['no_image'] = $this->language->get('no_image');
 		$this->data['button_save'] = $this->language->get('button_save');
     	$this->data['button_cancel'] = $this->language->get('button_cancel');
-		//ocshop	
+		//ocshop quick edit	
 		$this->data['column_image'] = $this->language->get('column_image');		
 		$this->data['column_name'] = $this->language->get('column_name');		
-		$this->data['column_model'] = $this->language->get('column_model');		
+		$this->data['column_model'] = $this->language->get('column_model');
+		//ocshop filter product by category and manufacturer
+		$this->data['column_category'] = $this->language->get('column_category');
+		$this->data['column_manufacturer'] = $this->language->get('column_manufacturer');
+		//ocshop filter product by category and manufacturer
 		$this->data['column_price'] = $this->language->get('column_price');		
 		$this->data['column_quantity'] = $this->language->get('column_quantity');		
 		$this->data['column_status'] = $this->language->get('column_status');		
@@ -477,12 +547,10 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['button_insert'] = $this->language->get('button_insert');		
 		$this->data['button_delete'] = $this->language->get('button_delete');		
 		$this->data['button_filter'] = $this->language->get('button_filter');
-		//ocshop
+		//ocshop button enabled and disabled
 		$this->data['button_enable'] = $this->language->get('button_enable');
         $this->data['button_disable'] = $this->language->get('button_disable');
-		$this->load->model('catalog/category');
-		$this->data['categories'] = $categories = $this->model_catalog_category->getCategories(0);
-		//ocshop
+		//ocshop button enabled and disabled
 		 
  		$this->data['token'] = $this->session->data['token'];
 		
@@ -505,6 +573,16 @@ class ControllerCatalogProduct extends Controller {
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
+		
+		//ocshop filter product by category and manufacturer
+			if (isset($this->request->get['filter_manufacturer'])) {
+				$url .= '&filter_manufacturer=' . $this->request->get['filter_manufacturer'];
+			}
+			
+			if (isset($this->request->get['filter_category_id'])) {
+				$url .= '&filter_category_id=' . $this->request->get['filter_category_id'] . '&filter_sub_category=true';
+			}
+		//ocshop filter product by category and manufacturer
 		
 		if (isset($this->request->get['filter_model'])) {
 			$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
@@ -533,6 +611,10 @@ class ControllerCatalogProduct extends Controller {
 		}
 					
 		$this->data['sort_name'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=pd.name' . $url, 'SSL');
+		//ocshop filter product by category and manufacturer
+		$this->data['sort_manufacturer'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.manufacturer' . $url, 'SSL');
+			$this->data['sort_category'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.category' . $url, 'SSL');
+		//ocshop filter product by category and manufacturer
 		$this->data['sort_model'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.model' . $url, 'SSL');
 		$this->data['sort_price'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.price' . $url, 'SSL');
 		$this->data['sort_quantity'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.quantity' . $url, 'SSL');
@@ -544,6 +626,16 @@ class ControllerCatalogProduct extends Controller {
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
+		
+		//ocshop filter product by category and manufacturer
+			if (isset($this->request->get['filter_manufacturer'])) {
+				$url .= '&filter_manufacturer=' . $this->request->get['filter_manufacturer'];
+			}
+			
+			if (isset($this->request->get['filter_category_id'])) {
+				$url .= '&filter_category_id=' . $this->request->get['filter_category_id'] . '&filter_sub_category=true';
+			}
+		//ocshop filter product by category and manufacturer
 		
 		if (isset($this->request->get['filter_model'])) {
 			$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
@@ -579,12 +671,13 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['pagination'] = $pagination->render();
 	
 		$this->data['filter_name'] = $filter_name;
+		//ocshop filter product by category and manufacturer
+		$this->data['filter_category_id'] = $filter_category_id;
+		$this->data['filter_manufacturer'] = $filter_manufacturer;
+		//ocshop filter product by category and manufacturer
 		$this->data['filter_model'] = $filter_model;
 		$this->data['filter_price'] = $filter_price;
 		$this->data['filter_quantity'] = $filter_quantity;
-		//ocshop
-		$this->data['filter_category_id'] = $filter_category_id;
-		//ocshop
 		$this->data['filter_status'] = $filter_status;
 		
 		$this->data['sort'] = $sort;
@@ -736,6 +829,16 @@ class ControllerCatalogProduct extends Controller {
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
+		
+		//ocshop filter product by category and manufacturer
+			if (isset($this->request->get['filter_manufacturer'])) {
+				$url .= '&filter_manufacturer=' . $this->request->get['filter_manufacturer'];
+			}
+			
+			if (isset($this->request->get['filter_category_id'])) {
+				$url .= '&filter_category_id=' . $this->request->get['filter_category_id'] . '&filter_sub_category=true';
+			}
+		//ocshop filter product by category and manufacturer
 		
 		if (isset($this->request->get['filter_model'])) {
 			$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
@@ -1295,7 +1398,7 @@ class ControllerCatalogProduct extends Controller {
       		return false;
     	}
   	}
-	//ocshop
+	//ocshop button enabled and disabled
 	public function enable() {
         $this->load->language('catalog/product');
 
@@ -1365,7 +1468,7 @@ class ControllerCatalogProduct extends Controller {
 
         $this->getList();
     }
-	//ocshop
+	//ocshop button enabled and disabled
 	
   	private function validateDelete() {
     	if (!$this->user->hasPermission('modify', 'catalog/product')) {
@@ -1420,14 +1523,6 @@ class ControllerCatalogProduct extends Controller {
 			} else {
 				$filter_sub_category = '';
 			}
-			
-			/* ocshop */
-								if (isset($this->request->get['filter_category_id'])) {
-									$filter_category_id = $this->request->get['filter_category_id'];
-								} else {
-									$filter_category_id = '';
-								}
-						/* ocshop */
 			
 			if (isset($this->request->get['limit'])) {
 				$limit = $this->request->get['limit'];	

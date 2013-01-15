@@ -257,13 +257,13 @@ class ModelCatalogProduct extends Model {
 						
 		$this->cache->delete('product');
 	}
-	//ocshop
+	//ocshop button enabled and disabled
 	public function editProductStatus($product_id, $status) {
         $this->db->query("UPDATE " . DB_PREFIX . "product SET status = '" . (int)$status . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
 
         $this->cache->delete('product');
     }
-	//ocshop
+	//ocshop button enabled and disabled
 	
 	public function copyProduct($product_id) {
 		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
@@ -336,16 +336,19 @@ class ModelCatalogProduct extends Model {
 	
 	public function getProducts($data = array()) {
 		if ($data) {
-			$sql = "SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)";
+			//ocshop filter product by category and manufacturer
+			//$sql = "SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)";
+			  $sql = "SELECT p.*,pd.*, m.name as manufacturer FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "manufacturer m ON ( p.manufacturer_id = m.manufacturer_id )";
+			//ocshop filter product by category and manufacturer
 			
 			if (!empty($data['filter_category_id'])) {
 				$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)";			
 			}
 					
 			$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'"; 
-			//ocshop filter product by category
+			
 			if (!empty($data['filter_name'])) {
-				$sql .= " AND LCASE(pd.name) LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_name'])) . "%'";
+				$sql .= " AND LCASE(pd.name) LIKE '" . $this->db->escape(utf8_strtolower($data['filter_name'])) . "%'";
 			}
 
 			if (!empty($data['filter_model'])) {
@@ -353,8 +356,8 @@ class ModelCatalogProduct extends Model {
 			}
 			
 			if (!empty($data['filter_price'])) {
-			//ocshop filter product by category
-				$sql .= " AND p.price LIKE '%" . $this->db->escape($data['filter_price']) . "%'";
+			
+				$sql .= " AND p.price LIKE '" . $this->db->escape($data['filter_price']) . "%'";
 			}
 			
 			if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
@@ -384,6 +387,12 @@ class ModelCatalogProduct extends Model {
 					$sql .= " AND p2c.category_id = '" . (int)$data['filter_category_id'] . "'";
 				}
 			}
+			
+			//ocshop filter product by category and manufacturer
+			if (isset($data['filter_manufacturer']) && !is_null($data['filter_manufacturer'])) {
+				$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer'] . "'";
+			}	
+			//ocshop filter product by category and manufacturer
 			
 			$sql .= " GROUP BY p.product_id";
 						
@@ -604,6 +613,24 @@ class ModelCatalogProduct extends Model {
 		
 		return $product_layout_data;
 	}
+	
+	//ocshop filter product by category and manufacturer
+	public function getProductCategoriesInfo($product_id) {			
+		$product_category_data = array();
+					
+		$query = $this->db->query("SELECT c.*, cd.name FROM " . DB_PREFIX . "product_to_category c INNER JOIN " . DB_PREFIX . "category_description cd ON c.category_id = cd.category_id WHERE product_id = '" . (int)$product_id . "'");
+		
+		foreach ($query->rows as $result) {	
+				$path = $this->model_catalog_category->getPath( $result['category_id'] );			
+				$product_category_data[] = array( 
+				'id' => $result['category_id'], 
+				'name' => $result['name'],
+				'path' => $path
+				);
+			}			
+		return $product_category_data;
+	}
+	//ocshop filter product by category and manufacturer
 		
 	public function getProductCategories($product_id) {
 		$product_category_data = array();
@@ -647,9 +674,9 @@ class ModelCatalogProduct extends Model {
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND LCASE(pd.name) LIKE '" . $this->db->escape(utf8_strtolower($data['filter_name'])) . "%'";
 		}
-		//ocshop filter product by category
+		
 		if (!empty($data['filter_model'])) {
-			$sql .= " AND LCASE(p.model) LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_model'])) . "%'";
+			$sql .= " AND LCASE(p.model) LIKE '" . $this->db->escape(utf8_strtolower($data['filter_model'])) . "%'";
 		}
 		
 		if (!empty($data['filter_price'])) {

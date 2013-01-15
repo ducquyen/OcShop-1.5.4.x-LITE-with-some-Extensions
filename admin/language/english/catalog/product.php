@@ -14,9 +14,19 @@ $_['text_option']            = 'Option';
 $_['text_option_value']      = 'Option Value';
 $_['text_percent']           = 'Percentage';
 $_['text_amount']            = 'Fixed Amount';
+//ocshop quick edit
+$_['text_new_price']            = 'Price has been successfully changed. New price: ';
+$_['text_new_quantity']         = 'The quantity of successfully modified. The new quantity: ';
+$_['text_new_model']            = 'The model has been successfully changed. The new value: ';
+$_['text_new_name']             = 'Name modified successfully. The new value: ';
+//ocshop quick edit
 
 // Column
 $_['column_name']            = 'Product Name';
+//ocshop filter product by category and manufacturer
+$_['column_category']        = 'Category';
+$_['column_manufacturer']    = 'Manufacturer';
+//ocshop filter product by category and manufacturer
 $_['column_model']           = 'Model';
 $_['column_image']           = 'Image';
 $_['column_price']           = 'Price';
