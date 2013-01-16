@@ -26,6 +26,11 @@ class ModelCatalogCategory extends Model {
 				}
 			}
 		}
+		
+		//ocshop clear cache seo
+        $this->cache->delete('seo_pro');
+        $this->cache->delete('seo_url');
+        //end ocshop clear cache seo
 						
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . (int)$category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
@@ -66,6 +71,11 @@ class ModelCatalogCategory extends Model {
 		}
 						
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id. "'");
+		
+		//ocshop clear cache seo
+        $this->cache->delete('seo_pro');
+        $this->cache->delete('seo_url');
+        //end ocshop clear cache seo
 		
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . (int)$category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");

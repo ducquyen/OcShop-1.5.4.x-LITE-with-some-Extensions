@@ -32,3 +32,9 @@ ocShop Edition (http://ocshop.biz) на основе Opencart \ ocStore
 22. в административной части установлен ckeditor версии 4
 23. в административной части установлен image manager pro
 24. в административной части установлен Кэш Менеджер удаление Системного Кэша и Изображений
+25. в административной части установлен SEO Manager
+	в запросе при установке добавляются SEO Keyword:
+	- specials
+	- brands
+	- contact-us
+	- sitemap

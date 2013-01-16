@@ -109,6 +109,11 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 		
+		//ocshop clear cache seo
+        $this->cache->delete('seo_pro');
+        $this->cache->delete('seo_url');
+        //end ocshop clear cache seo
+		
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
@@ -250,6 +255,11 @@ class ModelCatalogProduct extends Model {
 		}
 		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id. "'");
+		
+		//ocshop clear cache seo
+        $this->cache->delete('seo_pro');
+        $this->cache->delete('seo_url');
+        //end ocshop clear cache seo
 		
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
