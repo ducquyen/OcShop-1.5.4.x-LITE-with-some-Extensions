@@ -96,25 +96,5 @@ class ControllerCatalogCacheManager extends Controller {
 		}
 	}
 	
-	public function delete(){
-		$this->load->language('catalog/cachemanager');
-
-		$this->document->setTitle($this->language->get('heading_title'));
-				
-		if (isset($this->request->post['selected']) && $this->validateDelete()) {
-			foreach ($this->request->post['selected'] as $name) {
-				$fullpath = DIR_CACHE . $name;
-				if (file_exists($fullpath)){
-					@unlink($fullpath);
-				}
-			}
-
-			$this->session->data['success'] = $this->language->get('text_success');
-			$this->redirect(HTTPS_SERVER . 'index.php?route=catalog/cachemanager&token=' . $this->session->data['token']);
-		}
-
-		$this->getList();
-	}
-	
 }
 ?>
