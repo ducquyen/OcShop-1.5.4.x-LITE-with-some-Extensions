@@ -78,4 +78,7 @@ $_['text_voucher_theme']               = 'Voucher Themes';
 $_['text_weight_class']                = 'Weight Classes';
 $_['text_length_class']                = 'Length Classes';
 $_['text_zone']                        = 'Zones';
+//ocshop cache manager
+$_['text_cachemanager']				   = 'Cache Manager';
+//ocshop cache manager
 ?>
