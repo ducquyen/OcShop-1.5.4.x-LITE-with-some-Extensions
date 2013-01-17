@@ -17,6 +17,15 @@ $_['text_select']           = ' --- Please Select --- ';
 $_['text_all_zones']        = 'All Zones';
 $_['text_pagination']       = 'Showing {start} to {end} of {total} ({pages} Pages)';
 $_['text_separator']        = ' &raquo; ';
+//ocshop sort
+$_['text_list']         = 'list';
+$_['text_grid']         = 'grid';
+$_['text_sort_by']        = 'Sort by:';
+$_['text_sort_name']        = 'name';
+$_['text_sort_price']        = 'price';
+$_['text_sort_rated']        = 'rated';
+$_['text_sort_viewed']        = 'viewed';
+//end ocshop sort
 
 // Buttons
 $_['button_add_address']    = 'Add Address';

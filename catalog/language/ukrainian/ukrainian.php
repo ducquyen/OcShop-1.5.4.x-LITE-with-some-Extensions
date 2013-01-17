@@ -70,3 +70,12 @@ $_['button_voucher'] = 'Застосувати подарунковий серт
 $_['button_download'] = 'Завантаження'; #39113
 $_['button_reorder'] = 'Повторне замовлення'; #39114
 $_['button_return'] = 'Повернення'; #39115
+//ocshop sort
+$_['text_list']         = 'списком';
+$_['text_grid']         = 'сітка';
+$_['text_sort_by']        = 'Сортувати по:';
+$_['text_sort_name']        = 'назві';
+$_['text_sort_price']        = 'ціні';
+$_['text_sort_rated']        = 'рейтингу';
+$_['text_sort_viewed']        = 'переглядам';
+//end ocshop sort

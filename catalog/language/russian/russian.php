@@ -17,6 +17,7 @@ $_['text_select']           = ' --- Выберите --- ';
 $_['text_all_zones']        = 'Все зоны';
 $_['text_pagination']       = 'Показано с {start} по {end} из {total} (всего {pages} страниц)';
 $_['text_separator']        = ' &raquo; ';
+//ocshop sort
 $_['text_list']         = 'списком';
 $_['text_grid']         = 'таблицей';
 $_['text_sort_by']        = 'Сортировать по:';
@@ -24,6 +25,7 @@ $_['text_sort_name']        = 'названию';
 $_['text_sort_price']        = 'цене';
 $_['text_sort_rated']        = 'рейтингу';
 $_['text_sort_viewed']        = 'просмотрам';
+//end ocshop sort
 
 
 // Buttons

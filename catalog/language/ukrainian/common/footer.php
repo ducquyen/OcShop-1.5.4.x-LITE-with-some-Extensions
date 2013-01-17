@@ -28,7 +28,7 @@ $_['text_affiliate'] = 'Партнерська програма'; #37641
 $_['text_order'] = 'Історія замовлень'; #37642
 $_['text_wishlist'] = 'Список бажаних товарів'; #37643
 $_['text_newsletter'] = 'Розсилання новин'; #37644
-$_['text_powered'] = 'Працює на <a href="http://opencart.ua">OpenCart</a><br /> %s &copy; %s'; #37645
+$_['text_powered'] = 'Працює на <a href="http://myopencart.ru">OpenCart</a> | <a href="http://ocshop.biz">ocShop Edition</a><br /> %s &copy; %s'; #37645
 $_['text_service'] = 'Сервісні служби'; #37646
 $_['text_extra'] = 'Додатково'; #37647
 $_['text_special'] = 'Спеціальні'; #37648

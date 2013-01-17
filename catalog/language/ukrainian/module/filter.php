@@ -1,5 +1,5 @@
 <?php
 // Heading 
-$_['heading_title']  = 'Ô³ëüòð';
+$_['heading_title']  = 'Ð¤Ñ–Ð»ÑŒÑ‚Ñ€';
 
 ?>
