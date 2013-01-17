@@ -91,6 +91,11 @@ $_['entry_layout']           = 'Layout Override:';
 $_['entry_main_category']    = 'Category:';
 $_['entry_seo_title']        = 'HTML Tag Title:';
 $_['entry_seo_h1']           = 'HTML Tag H1:';
+//ocshop description mini and youtube and slider
+$_['entry_description_mini']      = 'Mini description:';
+$_['entry_description_slider']    = 'Description for slider:';
+$_['entry_youtube_code']          = 'Video products:';
+//end ocshop description mini and youtube and slider
 
 // Error
 $_['error_warning']          = 'Warning: Please check the form carefully for errors!';

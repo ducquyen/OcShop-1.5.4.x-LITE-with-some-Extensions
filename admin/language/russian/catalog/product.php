@@ -91,6 +91,11 @@ $_['entry_layout']           = 'Изменить схему:';
 $_['entry_main_category']    = 'Категория:';
 $_['entry_seo_title']        = 'HTML-тег Title:';
 $_['entry_seo_h1']           = 'HTML-тег H1:';
+//ocshop description mini and youtube and slider
+$_['entry_description_mini']      = 'Краткое Описание:';
+$_['entry_description_slider']    = 'Текст для Слайдера:';
+$_['entry_youtube_code']          = 'Видео Товара:';
+//end ocshop description mini and youtube and slider
 
 // Error
 $_['error_warning']          = 'Внимательно проверьте форму на ошибки!';

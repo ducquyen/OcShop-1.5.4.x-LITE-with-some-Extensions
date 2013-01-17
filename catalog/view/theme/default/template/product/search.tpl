@@ -109,7 +109,16 @@
       <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
       <?php } ?>
       <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
-      <div class="description"><?php echo $product['description']; ?></div>
+      <!-- ocshop description mini -->
+      <!-- <div class="description"><?php echo $product['description']; ?></div> -->
+	  <div class="description">
+		<?php if (!$product['description_mini']) { ?>
+		<?php echo $product['description']; ?>
+		<?php } else { ?>
+		<?php echo $product['description_mini']; ?>
+        <?php } ?>
+        </div>		
+	  <!-- end ocshop description mini -->
       <?php if ($product['price']) { ?>
       <div class="price">
         <?php if (!$product['special']) { ?>

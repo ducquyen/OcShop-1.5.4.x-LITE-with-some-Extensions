@@ -37,6 +37,9 @@ $_['entry_captcha']     = 'Введите код, указанный на кар
 
 // Tabs
 $_['tab_description']   = 'Описание';
+//ocshop youtube
+$_['tab_youtube_code']  = 'Видео';
+//end ocshop youtube
 $_['tab_attribute']     = 'Характеристики';
 $_['tab_review']        = 'Отзывы (%s)';
 $_['tab_related']       = 'Похожие товары'; 

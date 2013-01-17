@@ -23,6 +23,11 @@ class ModelCatalogProduct extends Model {
 				'meta_description' => $query->row['meta_description'],
 				'meta_keyword'     => $query->row['meta_keyword'],
 				'tag'              => $query->row['tag'],
+				//ocshop description mini and youtube and slider
+				'description_mini' => $query->row['description_mini'],
+				'description_slider' => $query->row['description_slider'],
+				'youtube_code' => $query->row['youtube_code'],
+				//end ocshop description mini and youtube and slider
 				'model'            => $query->row['model'],
 				'sku'              => $query->row['sku'],
 				'upc'              => $query->row['upc'],
@@ -56,7 +61,9 @@ class ModelCatalogProduct extends Model {
 				'status'           => $query->row['status'],
 				'date_added'       => $query->row['date_added'],
 				'date_modified'    => $query->row['date_modified'],
+				//ocshop viewed
 				'viewed'           => $query->row['viewed']
+				//end ocshop viewed
 			);
 		} else {
 			return false;

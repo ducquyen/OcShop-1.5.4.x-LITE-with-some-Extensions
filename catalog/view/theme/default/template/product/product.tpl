@@ -231,8 +231,13 @@
     <?php if ($attribute_groups) { ?>
     <a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
     <?php } ?>
-    <?php if ($review_status) { ?>
-    <a href="#tab-review"><?php echo $tab_review; ?></a>
+	<!-- ocshop youtube -->
+	<?php if ($attribute_groups) { ?>
+    <a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
+    <?php } ?>
+	<!-- end ocshop youtube -->
+    <?php if ($youtube_code) { ?>
+    <a href="#tab_youtube_code"><?php echo $tab_youtube_code; ?></a>
     <?php } ?>
     <?php if ($products) { ?>
     <a href="#tab-related"><?php echo $tab_related; ?> (<?php echo count($products); ?>)</a>
@@ -260,6 +265,11 @@
     </table>
   </div>
   <?php } ?>
+  <!-- ocshop youtube -->
+  <?php if ($youtube_code) { ?>
+  <div id="tab_youtube_code" class="tab-content"><?php echo $youtube_code; ?></div>
+  <?php } ?>
+  <!-- end ocshop youtube -->
   <?php if ($review_status) { ?>
   <div id="tab-review" class="tab-content">
     <div id="review"></div>

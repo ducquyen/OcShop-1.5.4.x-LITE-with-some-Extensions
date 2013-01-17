@@ -182,6 +182,9 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_share'] = $this->language->get('text_share');
 			$this->data['text_wait'] = $this->language->get('text_wait');
 			$this->data['text_tags'] = $this->language->get('text_tags');
+			//ocshop youtube
+			$this->data['tab_youtube_code'] = $this->language->get('tab_youtube_code');
+			//end ocshop youtube
 			
 			$this->data['entry_name'] = $this->language->get('entry_name');
 			$this->data['entry_review'] = $this->language->get('entry_review');
@@ -328,6 +331,9 @@ class ControllerProductProduct extends Controller {
 			$this->data['rating'] = (int)$product_info['rating'];
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
+			//ocshop youtube
+			$this->data['youtube_code'] = html_entity_decode($product_info['youtube_code'], ENT_QUOTES, 'UTF-8');
+			//end ocshop youtube
 			
 			$this->data['products'] = array();
 			

@@ -49,6 +49,11 @@ $_['column_name'] = 'Назва товару'; #35644
 $_['column_category']           = 'Категорія';
 $_['column_manufacturer']       = 'Виробник';
 //end ocshop filter product by category and manufacturer
+//ocshop description mini and youtube and slider
+$_['entry_description_mini']      = 'Короткий Опис:';
+$_['entry_description_slider']    = 'Текст для слайдера:';
+$_['entry_youtube_code']          = 'Відео Товару:';
+//end ocshop description mini and youtube and slider
 $_['column_quantity'] = 'Кількість'; #35645
 $_['entry_store'] = 'Магазини:'; #36167
 $_['column_action'] = 'Дія'; #36168

@@ -30,6 +30,9 @@ $_['entry_good'] = 'Добре'; #35654
 $_['entry_bad'] = 'Погано'; #35655
 $_['entry_captcha'] = 'Введіть код, вказаний на зображенні:'; #35656
 $_['tab_description'] = 'Опис'; #35657
+//ocshop youtube
+$_['tab_youtube_code']  = 'Відео';
+//end ocshop youtube
 $_['tab_related'] = 'Рекомендуємо'; #35658
 $_['text_discount'] = 'Кількість, Ціна:'; #36118
 $_['text_error'] = 'Товар не знайдено!'; #36119

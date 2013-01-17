@@ -254,6 +254,9 @@ class ControllerProductManufacturer extends Controller {
 					'thumb'       => $image,
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 100) . '..',
+					//ocshop description mini
+					'description_mini' => html_entity_decode ($result['description_mini']),
+					//end ocshop description mini
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
