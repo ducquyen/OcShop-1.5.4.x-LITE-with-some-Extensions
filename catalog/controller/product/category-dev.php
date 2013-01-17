@@ -7,9 +7,9 @@ class ControllerProductCategory extends Controller {
 		
 		$this->load->model('catalog/product');
 		
-		//ocshop sort manufacturer 
+		//ocshop
 		$this->load->model('catalog/manufacturer');
-		//end ocshop sort manufacturer 
+		//ocshop
 		
 		$this->load->model('tool/image'); 
 		
@@ -19,27 +19,19 @@ class ControllerProductCategory extends Controller {
 			$sort = 'p.sort_order';
 		}
 		
-		//ocshop sort manufacturer
+		//ocshop
 		if (isset($this->request->get['manufacturer_filter'])) {
 			$manufacturer_filter = $this->request->get['manufacturer_filter'];
 		} else {
 			$manufacturer_filter = 0;
 		}
-		//end ocshop sort manufacturer 
+		//ocshop
 
 		if (isset($this->request->get['order'])) {
 			$order = $this->request->get['order'];
 		} else {
 			$order = 'ASC';
 		}
-		
-		//ocshop sor product filter
-	    if (isset($this->request->get['filter'])) {
-	        $filter = $this->request->get['filter'];
-	    } else {
-	        $filter = '';
-	    }
-		//end ocshop sor product filter
 		
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -122,13 +114,13 @@ class ControllerProductCategory extends Controller {
 			$this->data['text_sort'] = $this->language->get('text_sort');
 			$this->data['text_limit'] = $this->language->get('text_limit');
 			
-			//ocshop sort
+			//ocshop
 			$this->data['text_sort_by'] = $this->language->get('text_sort_by');
 			$this->data['text_sort_name'] = $this->language->get('text_sort_name');
 			$this->data['text_sort_price'] = $this->language->get('text_sort_price');
 			$this->data['text_sort_rated'] = $this->language->get('text_sort_rated');
 			$this->data['text_sort_viewed'] = $this->language->get('text_sort_viewed');
-			//end ocshop sort
+			//ocshop
 					
 			$this->data['button_cart'] = $this->language->get('button_cart');
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
@@ -150,21 +142,15 @@ class ControllerProductCategory extends Controller {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
 
-			//ocshop sort manufacturer 
+			//ocshop
 			if (isset($this->request->get['manufacturer_filter'])) {
 				$url .= '&manufacturer_filter=' . $this->request->get['manufacturer_filter'];
 			}	
-			//end ocshop sort manufacturer 
+			//ocshop
 
 			if (isset($this->request->get['order'])) {
 				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			//ocshop sor product filter
-	        if (isset($this->request->get['filter'])) {
-	          $url .= '&filter=' . $this->request->get['filter'];
-	        }
-	        //end ocshop sor product filter
+			}	
 			
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
@@ -174,7 +160,7 @@ class ControllerProductCategory extends Controller {
 			
 			$results = $this->model_catalog_category->getCategories($category_id);
 			
-			//ocshop sort manufacturer get manufacturers for child categories
+			// ocshop get manufacturers for child categories
 			$categoryids_with_childs = array();
 			$categoryids_with_childs = $this->model_catalog_category->getCategoriesByParentId($category_id);
 			array_push($categoryids_with_childs, $category_id);
@@ -197,22 +183,18 @@ class ControllerProductCategory extends Controller {
 					);			
 				}
 			}
-			//end ocshop sort manufacturer 
+			//
 			
 			foreach ($results as $result) {
 				$data = array(
 					'filter_category_id'  => $result['category_id'],
 					'filter_sub_category' => true
 				);
-				//ocshop sor product filter
-				//$product_total = $this->model_catalog_product->getTotalProducts($data);
-				$product_total = $this->model_catalog_product->getTotalProducts($data, $filter);
-				//ocshop sor product filter
+				
+				$product_total = $this->model_catalog_product->getTotalProducts($data);				
+				
 				$this->data['categories'][] = array(
 					'name'  => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
-					//ocshop sor product filter
-					'count' => $product_total,
-					//ocshop sor product filter
 					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
 				);
 			}
@@ -222,20 +204,18 @@ class ControllerProductCategory extends Controller {
 			$data = array(
 				'filter_category_id' => $category_id, 
 				'sort'               => $sort,
-				//ocshop sort manufacturer 
+				//ocshop
 				'manufacturer_filter' => $manufacturer_filter,
 				'filter_manufacturer_id' => $manufacturer_filter,
-				//end ocshop sort manufacturer 
+				//ocshop
 				'order'              => $order,
 				'start'              => ($page - 1) * $limit,
 				'limit'              => $limit
 			);
 					
 			$product_total = $this->model_catalog_product->getTotalProducts($data); 
-			//ocshop sor product filter
-			//$results = $this->model_catalog_product->getProducts($data);
-			$results = $this->model_catalog_product->getProducts($data, $filter);
-			//ocshop sor product filter
+			
+			$results = $this->model_catalog_product->getProducts($data);
 			
 			foreach ($results as $result) {
 				if ($result['image']) {
@@ -278,17 +258,12 @@ class ControllerProductCategory extends Controller {
 					'tax'         => $tax,
 					'rating'      => $result['rating'],
 					'reviews'     => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+					'category_reviews'     => sprintf($this->language->get('text_category_reviews'), (int)$result['reviews']),
 					'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
 				);
 			}
 			
 			$url = '';
-			
-			//ocshop sor product filter
-	        if (isset($this->request->get['filter'])) {
-	          $url .= '&filter=' . $this->request->get['filter'];
-	        }
-	        //end ocshop sor product filter
 	
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
@@ -421,12 +396,6 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['order'])) {
 				$url .= '&order=' . $this->request->get['order'];
 			}
-			
-			//ocshop sor product filter
-	        if (isset($this->request->get['filter'])) {
-	          $url .= '&filter=' . $this->request->get['filter'];
-	        }
-	        //end ocshop sor product filter
 	
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
@@ -440,9 +409,9 @@ class ControllerProductCategory extends Controller {
 			$pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&page={page}');
 		
 			$this->data['pagination'] = $pagination->render();
-			//ocshop sort
+			//ocshop
 			$this->data['product_total'] = $product_total;
-			//ocshop sort
+			//ocshop
 		
 			$this->data['sort'] = $sort;
 			$this->data['order'] = $order;
@@ -480,12 +449,6 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['order'])) {
 				$url .= '&order=' . $this->request->get['order'];
 			}
-			
-			//ocshop sor product filter
-	        if (isset($this->request->get['filter'])) {
-	          $url .= '&filter=' . $this->request->get['filter'];
-	        }
-	        //end ocshop sor product filter
 				
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];

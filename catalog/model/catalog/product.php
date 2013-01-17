@@ -63,7 +63,10 @@ class ModelCatalogProduct extends Model {
 		}
 	}
 
-	public function getProducts($data = array()) {
+	//ocshop sor product filter
+	//public function getProducts($data = array()) {
+	public function getProducts($data = array(), $filter=0) {
+	//end ocshop sor product filter
 		if ($this->customer->isLogged()) {
 			$customer_group_id = $this->customer->getCustomerGroupId();
 		} else {
@@ -72,7 +75,10 @@ class ModelCatalogProduct extends Model {
 		
 		$cache = md5(http_build_query($data));
 		
-		$product_data = $this->cache->get('product.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$customer_group_id . '.' . $cache);
+		//ocshop sor product filter
+		//$product_data = $this->cache->get('product.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$customer_group_id . '.' . $cache);
+		$product_data = $this->cache->get('product.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$customer_group_id . '.'.$filter. '.'. $cache);
+		//end ocshop sor product filter
 		
 		if (!$product_data) {
 			$sql = "SELECT p.product_id, (SELECT AVG(rating) AS total FROM " . DB_PREFIX . "review r1 WHERE r1.product_id = p.product_id AND r1.status = '1' GROUP BY r1.product_id) AS rating FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id)"; 
@@ -156,6 +162,31 @@ class ModelCatalogProduct extends Model {
 			if (!empty($data['filter_manufacturer_id'])) {
 				$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 			}
+			
+			//ocshop sor product filter
+			if ($filter)
+			{
+					foreach (explode(';', $filter) as $option) {
+						$datatotal=NULL;
+						$values = explode('=', $option);
+						$datatotal = array();
+						foreach (explode(',', $values[1]) as $value_id) {
+						$query = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "product_to_value WHERE value_id='" . (int)$value_id . "'");
+						if ($query->rows) {
+						foreach($query->rows as $row) {
+						$datatotal[] = $row['product_id'];
+            }
+						} else {
+						unset($datatotal);
+						}
+			}
+			if (!empty($datatotal)) {
+				$sql .= "
+				AND p.product_id IN (" . implode(",", $datatotal) . ")";
+				}
+			}
+		}
+			//end ocshop sor product filter
 			
 			$sql .= " GROUP BY p.product_id";
 			
@@ -450,8 +481,10 @@ class ModelCatalogProduct extends Model {
 		
 		return $query->rows;
 	}	
-		
-	public function getTotalProducts($data = array()) {
+	//ocshop sor product filter	
+	//public function getTotalProducts($data = array()) {
+	public function getTotalProducts($data = array(), $filter = 0) {
+	//ocshop sor product filter
 		if ($this->customer->isLogged()) {
 			$customer_group_id = $this->customer->getCustomerGroupId();
 		} else {
@@ -544,6 +577,39 @@ class ModelCatalogProduct extends Model {
 			if (!empty($data['filter_manufacturer_id'])) {
 				$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 			}
+			
+			//ocshop sor product filter
+			if ($filter)
+				{
+				foreach (explode(';', $filter) as $option)
+				{
+				$datatotal=NULL;
+				$values = explode('=', $option);
+				$data = array();
+				foreach (explode(',', $values[1]) as $value_id)
+				{
+		$qsql="SELECT product_id FROM " . DB_PREFIX . "product_to_value WHERE value_id='" . (int)$value_id . "'";
+				$query = $this->db->query($qsql);
+        if ($query->rows) {
+				foreach($query->rows as $row) {
+				$datatotal[] = $row['product_id'];
+				}
+				} else {
+				unset($datatotal);
+			}
+        }
+
+        if (!empty($datatotal)) {
+
+				$sql .= "
+         AND p.product_id IN (" . implode(",", $datatotal) . ")";
+				} else {
+				return 0;
+			}
+		}
+
+    }
+	//end ocshop sor product filter
 			
 			$query = $this->db->query($sql);
 			

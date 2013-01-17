@@ -54,6 +54,16 @@ class ModelCatalogProduct extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_discount SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$product_discount['customer_group_id'] . "', quantity = '" . (int)$product_discount['quantity'] . "', priority = '" . (int)$product_discount['priority'] . "', price = '" . (float)$product_discount['price'] . "', date_start = '" . $this->db->escape($product_discount['date_start']) . "', date_end = '" . $this->db->escape($product_discount['date_end']) . "'");
 			}
 		}
+		
+		//ocshop sor product filter
+		if (isset($data['product_to_value_id'])) {
+			foreach ($data['product_to_value_id'] as $option_id => $values) {
+				foreach ($values as $value_id) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_value SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (int)$value_id . "'");
+				}
+			}
+		}
+		//end sor product filter
 
 		if (isset($data['product_special'])) {
 			foreach ($data['product_special'] as $product_special) {
@@ -185,6 +195,19 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 		
+		//ocshop sor product filter
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_value WHERE product_id = '" . (int)$product_id . "'");
+
+
+		if (isset($data['product_to_value_id'])) {
+			foreach ($data['product_to_value_id'] as $option_id => $values) {
+				foreach ($values as $value_id) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_value SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (int)$value_id . "'");
+				}
+			}
+		}
+		//end ocshop sor product filter
+		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'");
 		
 		if (isset($data['product_special'])) {
@@ -273,7 +296,7 @@ class ModelCatalogProduct extends Model {
 
         $this->cache->delete('product');
     }
-	//ocshop button enabled and disabled
+	//end ocshop button enabled and disabled
 	
 	public function copyProduct($product_id) {
 		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
@@ -292,6 +315,9 @@ class ModelCatalogProduct extends Model {
 			$data = array_merge($data, array('product_attribute' => $this->getProductAttributes($product_id)));
 			$data = array_merge($data, array('product_description' => $this->getProductDescriptions($product_id)));			
 			$data = array_merge($data, array('product_discount' => $this->getProductDiscounts($product_id)));
+			//ocshop sor product filter
+			$data = array_merge($data, array('product_to_value_id' => $this->getProductValues($product_id)));
+			//end ocshop sor product filter
 			$data = array_merge($data, array('product_image' => $this->getProductImages($product_id)));
 			
 			$data['product_image'] = array();
@@ -320,6 +346,9 @@ class ModelCatalogProduct extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "'");
+		//ocshop sor product filter
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_value WHERE product_id = '" . (int)$product_id . "'");
+		//end ocshop sor product filter
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "'");
@@ -349,7 +378,7 @@ class ModelCatalogProduct extends Model {
 			//ocshop filter product by category and manufacturer
 			//$sql = "SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)";
 			  $sql = "SELECT p.*,pd.*, m.name as manufacturer FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "manufacturer m ON ( p.manufacturer_id = m.manufacturer_id )";
-			//ocshop filter product by category and manufacturer
+			//end ocshop filter product by category and manufacturer
 			
 			if (!empty($data['filter_category_id'])) {
 				$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)";			
@@ -402,7 +431,7 @@ class ModelCatalogProduct extends Model {
 			if (isset($data['filter_manufacturer']) && !is_null($data['filter_manufacturer'])) {
 				$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer'] . "'";
 			}	
-			//ocshop filter product by category and manufacturer
+			//end ocshop filter product by category and manufacturer
 			
 			$sql .= " GROUP BY p.product_id";
 						
@@ -640,7 +669,7 @@ class ModelCatalogProduct extends Model {
 			}			
 		return $product_category_data;
 	}
-	//ocshop filter product by category and manufacturer
+	//end ocshop filter product by category and manufacturer
 		
 	public function getProductCategories($product_id) {
 		$product_category_data = array();
@@ -779,5 +808,19 @@ class ModelCatalogProduct extends Model {
 
 		return $query->row['total'];
 	}
+	
+	//ocshop sor product filter
+	public function getProductValues($product_id) {
+		$values_id = array();
+
+		$query = $this->db->query("SELECT p2v.value_id AS value_id FROM " . DB_PREFIX . "product_to_value p2v WHERE p2v.product_id = '" . (int)$product_id . "'");
+
+		foreach ($query->rows as $result) {
+			$values_id[] = $result['value_id'];
+		}
+
+		return $values_id;
+	}
+	//end ocshop sor product filter
 }
 ?>

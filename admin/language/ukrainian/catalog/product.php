@@ -23,7 +23,12 @@ $_['text_new_price']            = 'Ціна успішно змінена. Но�
 $_['text_new_quantity']         = 'Кількість успішно змінено. Нова кількість: ';
 $_['text_new_model']            = 'Модель успішно змінена. Нове значення: ';
 $_['text_new_name']             = 'Назва успішно змінено. Нове значення: ';
-//ocshop quick edit
+//end ocshop quick edit
+//ocshop sor product filter
+$_['tab_filter']             = 'Опції фільтра';
+$_['filter_category_options_error']            = 'Цій категорії товарів не присвоєно жоден фільтр';
+$_['filter_category_option_error']             = 'Спочатку виберіть категорію товарів';
+//end ocshop sor product filter  
 $_['column_model'] = 'Модель'; #35629
 $_['column_image'] = 'Зображення'; #35630
 $_['column_status'] = 'Статус'; #35631
@@ -43,7 +48,7 @@ $_['column_name'] = 'Назва товару'; #35644
 //ocshop filter product by category and manufacturer
 $_['column_category']           = 'Категорія';
 $_['column_manufacturer']       = 'Виробник';
-//ocshop filter product by category and manufacturer
+//end ocshop filter product by category and manufacturer
 $_['column_quantity'] = 'Кількість'; #35645
 $_['entry_store'] = 'Магазини:'; #36167
 $_['column_action'] = 'Дія'; #36168

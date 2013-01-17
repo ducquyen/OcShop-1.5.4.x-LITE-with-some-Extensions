@@ -19,14 +19,19 @@ $_['text_new_price']            = 'Цена успешно изменена. Н�
 $_['text_new_quantity']         = 'Количество успешно изменено. Новое количество: ';
 $_['text_new_model']            = 'Модель успешно изменена. Новое значение: ';
 $_['text_new_name']             = 'Название успешно изменено. Новое значение: ';
-//ocshop quick edit
+//end ocshop quick edit
+//ocshop sor product filter
+$_['tab_filter']             = 'Опции фильтра';
+$_['filter_category_options_error']            = 'Этой категории товаров не присвоен ни один фильтр';
+$_['filter_category_option_error']             = 'Сначала выберите категорию товаров';
+//end ocshop sor product filter  
 
 // Column
 $_['column_name']            = 'Название товара';
 //ocshop filter product by category and manufacturer
 $_['column_category']           = 'Категория';
 $_['column_manufacturer']       = 'Производитель';
-//ocshop filter product by category and manufacturer
+//end ocshop filter product by category and manufacturer
 $_['column_model']           = 'Модель';
 $_['column_image']           = 'Изображения';
 $_['column_price']           = 'Цена на сайте';

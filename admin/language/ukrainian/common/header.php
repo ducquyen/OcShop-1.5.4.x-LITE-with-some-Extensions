@@ -21,6 +21,9 @@ Ask a question http://forum.opencart.ua
 $_['text_backup'] = 'Резервне копіювання'; #36272
 $_['text_catalog'] = 'Каталог'; #36273
 $_['text_category'] = 'Категорії'; #36274
+//ocshop sor product filter
+$_['text_filter']   = 'Фільтр товарів';
+//end ocshop sor product filter
 $_['text_country'] = 'Країни'; #36275
 $_['text_coupon'] = 'Дисконтні купони'; #36276
 $_['text_customer'] = 'Клієнти'; #36277

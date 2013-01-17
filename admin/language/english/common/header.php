@@ -10,6 +10,9 @@ $_['text_backup']                      = 'Backup / Restore';
 $_['text_banner']                      = 'Banners';
 $_['text_catalog']                     = 'Catalog';
 $_['text_category']                    = 'Categories';
+//ocshop sor product filter
+$_['text_filter']   				   = 'Filter products';
+//end ocshop sor product filter
 $_['text_confirm']			           = 'Delete/Uninstall cannot be undone! Are you sure you want to do this?';
 $_['text_country']                     = 'Countries';
 $_['text_coupon']                      = 'Coupons';

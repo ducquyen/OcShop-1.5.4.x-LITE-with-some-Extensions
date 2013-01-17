@@ -75,6 +75,9 @@ $(document).ready(function(){
         <ul>
           <li><a href="<?php echo $category; ?>"><?php echo $text_category; ?></a></li>
           <li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>
+		  <!-- ocshop sor product filter -->
+          <li><a href="<?php echo $filter; ?>"><?php echo $text_filter; ?></a></li>
+          <!-- end ocshop sor product filter -->
           <li><a class="parent"><?php echo $text_attribute; ?></a>
             <ul>
               <li><a href="<?php echo $attribute; ?>"><?php echo $text_attribute; ?></a></li>
@@ -199,14 +202,14 @@ $(document).ready(function(){
           </li>
         </ul>
       </li>
-	  <!-- ocshop
+	  
       <li id="help"><a class="top"><?php echo $text_help; ?></a>
         <ul>
           <li><a onClick="window.open('http://myopencart.ru');"><?php echo $text_opencart; ?></a></li>
           <li><a onClick="window.open('http://opencartforum.ru/index.php?app=ccs');"><?php echo $text_documentation; ?></a></li>
           <li><a onClick="window.open('http://opencartforum.ru');"><?php echo $text_support; ?></a></li>
         </ul>
-      </li> ocshop -->
+      </li>
     </ul>
     <ul class="right">
 	  <li id="store-login"><img src="view/image/lock.png" alt="" style="position: relative; top: 3px;" />&nbsp;<?php echo $logged; ?></li>

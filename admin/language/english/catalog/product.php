@@ -20,6 +20,11 @@ $_['text_new_quantity']         = 'The quantity of successfully modified. The ne
 $_['text_new_model']            = 'The model has been successfully changed. The new value: ';
 $_['text_new_name']             = 'Name modified successfully. The new value: ';
 //ocshop quick edit
+//ocshop sor product filter
+$_['tab_filter']             = 'Filter options';
+$_['filter_category_options_error']            = 'This category of goods not assigned to any one filter';
+$_['filter_category_option_error']             = 'First, select a product category';
+//end ocshop sor product filter  
 
 // Column
 $_['column_name']            = 'Product Name';

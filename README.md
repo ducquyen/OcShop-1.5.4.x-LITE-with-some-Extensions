@@ -38,3 +38,4 @@ ocShop Edition (http://ocshop.biz) на основе Opencart \ ocStore
 	- brands
 	- contact-us
 	- sitemap
+26. Интегрирован фильтр товаров sora

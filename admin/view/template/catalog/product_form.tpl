@@ -21,7 +21,7 @@
       <div class="buttons"><a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a><a onclick="location = '<?php echo $cancel; ?>';" class="button"><?php echo $button_cancel; ?></a></div>
     </div>
     <div class="content">
-      <div id="tabs" class="htabs"><a href="#tab-general"><?php echo $tab_general; ?></a><a href="#tab-data"><?php echo $tab_data; ?></a><a href="#tab-links"><?php echo $tab_links; ?></a><a href="#tab-attribute"><?php echo $tab_attribute; ?></a><a href="#tab-option"><?php echo $tab_option; ?></a><a href="#tab-discount"><?php echo $tab_discount; ?></a><a href="#tab-special"><?php echo $tab_special; ?></a><a href="#tab-image"><?php echo $tab_image; ?></a><a href="#tab-reward"><?php echo $tab_reward; ?></a><a href="#tab-design"><?php echo $tab_design; ?></a></div>
+      <div id="tabs" class="htabs"><a href="#tab-general"><?php echo $tab_general; ?></a><a href="#tab-data"><?php echo $tab_data; ?></a><a href="#tab-links"><?php echo $tab_links; ?></a><!-- ocshop sor product filter --><a href="#tab-filter"><?php echo $tab_filter; ?></a><!-- end ocshop sor product filter --><a href="#tab-attribute"><?php echo $tab_attribute; ?></a><a href="#tab-option"><?php echo $tab_option; ?></a><a href="#tab-discount"><?php echo $tab_discount; ?></a><a href="#tab-special"><?php echo $tab_special; ?></a><a href="#tab-image"><?php echo $tab_image; ?></a><a href="#tab-reward"><?php echo $tab_reward; ?></a><a href="#tab-design"><?php echo $tab_design; ?></a></div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
         <div id="tab-general">
           <div id="languages" class="htabs">
@@ -343,6 +343,35 @@
             </tr>
           </table>
         </div>
+		<!-- ocshop sor product filter -->
+		<div id="tab-filter">
+
+		<?php
+
+		if (isset($category_options_error) and $category_options_error!="")
+		{
+		echo $category_options_error;
+		}
+
+		if ($category_options) { ?>
+		<table class="form">
+		<?php foreach ($category_options as $option) { ?>
+		  <tr>
+			  <td width="20%"><b><?php echo $option['name'];?></td>
+			  <td width="80%">
+				  <?php if ($option['category_option_values']) { ?>
+					  <?php foreach ($option['category_option_values'] as $value) { ?>
+						<input id="filter_value_<?php echo $value['value_id']; ?>" type="checkbox" name="product_to_value_id[<?php echo $option['option_id']; ?>][]" <?php if (in_array($value['value_id'], $product_to_value_id)) { echo "checked";}?> value="<?php echo $value['value_id']?>">
+					  <label for="filter_value_<?php echo $value['value_id']; ?>"><?php echo $value['language'][$language_id]['name'];?></label>
+					  <?php } ?>
+				<?php } ?>
+			  </td>
+		  </tr>
+		  <?php } ?>
+      </table>
+     <?php } ?>
+     </div>
+		<!-- end ocshop sor product filter -->
         <div id="tab-attribute">
           <table id="attribute" class="list">
             <thead>
@@ -749,7 +778,38 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 	filebrowserFlashUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
 });
 <?php } ?>
-//--></script> 
+//--></script>
+<!-- ocshop sor product filter -->
+<script type="text/javascript"><!-- 
+$("input[name=\"product_category[]\"]").live('change', function() {
+	getFilterOptionsByCategoryId();
+});
+
+
+<?php if (isset($this->request->get['product_id'])) { ?>
+  <?php $if_product_id = '&product_id=' . $this->request->get['product_id']; ?>
+  getFilterOptionsByCategoryId();
+<?php } else { ?>
+  <?php $if_product_id = ''; ?>
+<?php } ?>
+
+function getFilterOptionsByCategoryId() {
+  var loadURL = '';
+  var fields = $("input[name=\"product_category[]\"]").serializeArray();
+  $.each(fields, function(i, field){
+     if (field.value == '') {
+      loadURL += '';
+     } else {
+      if (loadURL == '') {
+        loadURL += field.value;
+      } else {
+        loadURL += '_' + field.value;
+      }
+     }
+  });
+}
+//--></script>
+<!-- end ocshop sor product filter -->
 <script type="text/javascript"><!--
 $('input[name=\'related\']').autocomplete({
 	delay: 0,

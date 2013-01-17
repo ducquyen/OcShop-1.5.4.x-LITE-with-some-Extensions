@@ -57,7 +57,11 @@ class ControllerCatalogProduct extends Controller {
   	public function insert() {
     	$this->load->language('catalog/product');
 
-    	$this->document->setTitle($this->language->get('heading_title')); 
+    	$this->document->setTitle($this->language->get('heading_title'));
+
+		//ocshop sor product filter
+		$this->data['tab_filter'] = $this->language->get('tab_filter');
+		//end ocshop sor product filter
 		
 		$this->load->model('catalog/product');
 		
@@ -779,6 +783,11 @@ class ControllerCatalogProduct extends Controller {
 		
     	$this->data['tab_general'] = $this->language->get('tab_general');
     	$this->data['tab_data'] = $this->language->get('tab_data');
+		//ocshop sor product filter
+		$this->data['tab_filter'] = $this->language->get('tab_filter');
+		$this->data['filter_category_options_error'] = $this->language->get('filter_category_options_error');
+		$this->data['filter_category_option_error'] = $this->language->get('filter_category_option_error');
+		//end ocshop sor product filter
 		$this->data['tab_attribute'] = $this->language->get('tab_attribute');
 		$this->data['tab_option'] = $this->language->get('tab_option');		
 		$this->data['tab_discount'] = $this->language->get('tab_discount');
@@ -1369,6 +1378,85 @@ class ControllerCatalogProduct extends Controller {
 			'common/header',
 			'common/footer'
 		);
+		
+		//ocshop sor product filter
+		$this->load->model('catalog/filter');
+		$this->load->model('catalog/product');
+
+    $category_options = array();
+
+   if (isset($this->request->get['product_id'])) {
+    $product_id=$this->request->get['product_id'];
+    }
+    else
+    {
+
+    }
+
+   	$this->load->model('catalog/category');
+
+	$this->data['categories'] = $this->model_catalog_category->getCategories(0);
+
+	if (isset($this->request->post['product_category'])) {
+			$this->data['product_category'] = $this->request->post['product_category'];
+		} elseif (isset($this->request->get['product_id'])) {
+			$this->data['product_category'] = $this->model_catalog_product->getProductCategories($this->request->get['product_id']);
+		} else {
+			$this->data['product_category'] = array();
+	}
+
+    $path_category="";
+	for ($i=0; $i<count($this->data['product_category']); $i++)
+	{
+		  if ($i!=count($this->data['product_category']))
+		    $path_category.=	$this->data['product_category'][$i]."_";
+		  else
+		  {
+		  	$path_category.=	$this->data['product_category'][$i];
+		  }
+	}
+
+    $this->data['category_options_error']="";
+
+    if ($path_category != '') {
+			$parts = explode('_', $path_category);
+
+		  $results = $this->model_catalog_filter->getOptionByCategoriesId($parts);
+			if ($results) {
+			  foreach($results as $option) {
+          $category_options[] = array(
+            'option_id' => $option['option_id'],
+            'name' => $option['name'],
+            'category_option_values' => $this->model_catalog_filter->getOptionValues($option['option_id'])
+          );
+        }
+      } else {
+        $this->data['category_options_error'].= 'echo $filter_category_options_error';
+      }
+		} else {
+      $this->data['category_options_error'] .= 'echo $filter_category_option_error';
+    }
+
+    if (isset($this->request->get['product_id'])) {
+			$product_id = $this->request->get['product_id'];
+		} else {
+			$product_id = 0;
+		}
+
+
+	$product_info = $this->model_catalog_product->getProductValues($product_id);
+	if (isset($this->request->post['product_to_value_id'])) {
+			$product_to_value_id = $this->request->post['product_to_value_id'];
+		} elseif (isset($product_info)) {
+			$product_to_value_id = $this->model_catalog_product->getProductValues($product_id);
+		} else {
+			$product_to_value_id = array();
+	}
+
+    $this->data['language_id'] = $this->config->get('config_language_id');
+    $this->data['category_options'] = $category_options;
+    $this->data['product_to_value_id'] = $product_to_value_id;
+	//ocshop sor product filter
 				
 		$this->response->setOutput($this->render());
   	} 

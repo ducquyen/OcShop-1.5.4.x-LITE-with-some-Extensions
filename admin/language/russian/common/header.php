@@ -10,6 +10,9 @@ $_['text_backup']                      = 'Резервные копии';
 $_['text_banner']                      = 'Баннеры';
 $_['text_catalog']                     = 'Каталог';
 $_['text_category']                    = 'Категории';
+//ocshop sor product filter
+$_['text_filter']   				   = 'Фильтр товаров';
+//end ocshop sor product filter
 $_['text_confirm']                 = 'Удаление невозможно отменить! Вы уверены, что хотите это сделать?';
 $_['text_country']                     = 'Страны';
 $_['text_coupon']                      = 'Купоны';
