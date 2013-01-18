@@ -392,6 +392,42 @@ class ControllerProductProduct extends Controller {
 			
 			$this->model_catalog_product->updateViewed($this->request->get['product_id']);
 			
+			//ocshop reviews no ajax
+			$this->load->model('catalog/review');
+
+			$this->data['text_no_reviews'] = $this->language->get('text_no_reviews');
+
+			if (isset($this->request->get['page'])) {
+				$page = $this->request->get['page'];
+			} else {
+				$page = 1;
+			}
+
+			$this->data['reviews_array'] = array();
+
+			$review_total = $this->model_catalog_review->getTotalReviewsByProductId($product_id);
+
+			$results = $this->model_catalog_review->getReviewsByProductId($product_id, ($page - 1) * 5, 5);
+
+			foreach ($results as $result) {
+				$this->data['reviews_array'][] = array(
+					'author' => $result['author'],
+					'text' => strip_tags($result['text']),
+					'rating' => (int)$result['rating'],
+					'reviews' => sprintf($this->language->get('text_reviews'), (int)$review_total),
+					'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				);
+			}
+
+			$pagination = new Pagination();
+			$pagination->total = $review_total;
+			$pagination->page = $page;
+			$pagination->limit = 5;
+			$pagination->text = $this->language->get('text_pagination');
+			$pagination->url = $this->url->link('product/product', $url . '&product_id=' . $product_id . '&page={page}');
+			$this->data['review_pagination'] = $pagination->render();
+			//end ocshop reviews no ajax
+			
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/product.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/product/product.tpl';
 			} else {

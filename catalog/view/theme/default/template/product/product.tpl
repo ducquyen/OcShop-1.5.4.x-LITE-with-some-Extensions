@@ -272,7 +272,24 @@
   <!-- end ocshop youtube -->
   <?php if ($review_status) { ?>
   <div id="tab-review" class="tab-content">
-    <div id="review"></div>
+  <!-- ocshop reviews no ajax -->
+  <!-- <div id="review"></div> -->
+  <div id="review">
+		  <?php if ($reviews_array) { ?>
+		  <?php foreach ($reviews_array as $review) { ?>
+			  <div class="content"><span><?php echo $review['author']; ?>
+				  | <?php echo $review['date_added']; ?></span>
+				  <img src="catalog/view/theme/<?php echo $this->config->get('config_template'); ?>/image/stars-<?php echo $review['rating'] . '.png'; ?>"
+					   alt="<?php echo $review['reviews']; ?>"/>
+				  <br/>
+				  <?php echo $review['text']; ?></div>
+			  <?php } ?>
+		  <div class="pagination"><?php echo $review_pagination; ?></div>
+		  <?php } else { ?>
+		  <div class="content"><?php echo $text_no_reviews; ?></div>
+		  <?php } ?>
+	  </div>
+	<!-- end ocshop reviews no ajax -->
     <h2 id="review-title"><?php echo $text_write; ?></h2>
     <b><?php echo $entry_name; ?></b><br />
     <input type="text" name="name" value="" />
@@ -416,18 +433,6 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
 <?php } ?>
 <?php } ?>
 <script type="text/javascript"><!--
-$('#review .pagination a').live('click', function() {
-	$('#review').fadeOut('slow');
-		
-	$('#review').load(this.href);
-	
-	$('#review').fadeIn('slow');
-	
-	return false;
-});			
-
-$('#review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
-
 $('#button-review').bind('click', function() {
 	$.ajax({
 		url: 'index.php?route=product/product/write&product_id=<?php echo $product_id; ?>',
