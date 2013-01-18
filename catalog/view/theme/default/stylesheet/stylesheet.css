@@ -1760,3 +1760,91 @@ a.button:hover, input.button:hover {
 	text-decoration: underline;
 }
 /* end ocshop image categories and links child categories */
+/* mega category home */
+.box-content-home {
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding-top: 10px;
+	background: #FFFFFF;
+}
+.box-mchome {
+  margin-left: 0px;
+}
+.box-mchome .mchome {
+	display: inline-block;
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    vertical-align: top;
+	text-align: center;
+    width: 245px;
+	height: 255px;
+}
+.box-mchome img {
+}
+.box-mchome h3 {
+	margin: 0px;
+}
+.box-mchome h3 a {
+	color: #333333;
+	text-decoration: none;
+}
+.box-mchome ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px 0px 0px 80px;
+	text-align: left;
+}
+.box-mchome ul li {
+	padding-top: 2px;
+}
+.box-mchome ul a {
+	text-decoration: none;
+	color: #15527E;
+}
+.box-mchome .active {
+	text-decoration: underline;
+}
+.box-mchome ul a:hover {
+	text-decoration: underline;
+}
+.box-mchome > ul > li {
+    float: left;
+	padding: 8px 28px 8px 0px;
+}
+.box-mchome > ul > li + li {
+
+}
+.box-mchome > ul > li > a {
+	text-decoration: none;
+	color: #333;
+}
+.box-mchome > ul > li ul {
+	display: block;
+}
+.box-mchome > ul > li a.active {
+	font-weight: bold;
+	font-size:12px;
+}
+.box-mchome > ul > li a.active + ul {
+	display: block;
+}
+.box-mchome > ul > li ul > li {
+	padding: 5px 5px 0px 10px;
+}
+.box-mchome > ul > li ul > li > a {
+	text-decoration: none;
+	display: block;
+}
+.box-mchome > ul > li ul > li > a.active {
+	font-weight: bold;
+}
+.box-mchome > ul > li ul > li ul > li a.active {
+font-weight: bold;
+color: #06bcc3;
+}
+.box-mchome > ul > li ul > li ul > li a.active + ul {
+display: block;
+}
+/* end mega category home */
