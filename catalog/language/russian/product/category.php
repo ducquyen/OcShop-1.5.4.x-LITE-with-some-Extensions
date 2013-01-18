@@ -1,6 +1,9 @@
 <?php
 // Text
 $_['text_refine']       = 'Выберите подкатегорию';
+//ocshop image categories and links child categories
+$_['text_allcategory']  = 'Показать все';
+//end ocshop image categories and links child categories
 $_['text_product']      = 'Товары';
 $_['text_error']        = 'Категория не найдена!';
 $_['text_empty']        = 'В этой категории нет товаров.';

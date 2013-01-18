@@ -20,6 +20,9 @@ Ask a question http://forum.opencart.ua
 ************************************************************************************************************************/
 
 $_['text_product'] = 'Товари'; #35683
+//ocshop image categories and links child categories
+$_['text_allcategory']  = 'Показати всі';
+//end ocshop image categories and links child categories
 $_['text_empty'] = 'Ця категорія порожня.'; #35684
 $_['text_sort'] = 'Сортування'; #35685
 $_['text_price_asc'] = 'Ціною: Низькі > Високі'; #35686

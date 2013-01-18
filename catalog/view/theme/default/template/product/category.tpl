@@ -17,33 +17,49 @@
   </div>
   <?php } ?>
   -->
+  <!-- ocshop image categories and links child categories -->
   <?php if ($categories) { ?>
-  <h2><?php echo $text_refine; ?></h2>
-  <div class="category-list">
-    <?php if (count($categories) <= 5) { ?>
-    <ul>
-      <?php foreach ($categories as $category) { ?>
-      <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
-      <?php } ?>
-    </ul>
-    <?php } else { ?>
-    <?php for ($i = 0; $i < count($categories);) { ?>
-    <ul>
-      <?php $j = $i + ceil(count($categories) / 4); ?>
-      <?php for (; $i < $j; $i++) { ?>
-      <?php if (isset($categories[$i])) { ?>
-      <li><a href="<?php echo $categories[$i]['href']; ?>"><?php echo $categories[$i]['name']; ?></a></li>
-      <?php } ?>
-      <?php } ?>
-    </ul>
-    <?php } ?>
-    <?php } ?>
+  <div class="box-cat">
+  <div class="box-imgcategory">
+  <div class="box-imgcat box-subcat">
+  <?php for ($i = 0; $i < count($categories); $i = $i + 4): ?>
+  <?php for ($j = $i; $j < ($i + 4); $j++): ?>	
+  <?php if (isset ($categories[$j]))  : ?>
+  <div class="category-box">
+  <?php if ($categories[$j]['thumb']) { ?>
+  <div class="image"><a href="<?php echo $categories[$j]['href']; ?>"><img src="<?php echo $categories[$j]['thumb']; ?>" alt="<?php echo $categories[$j]['name']; ?>" /></a></div>
+  <?php } ?>
+  <div class="name subcatname"><a href="<?php echo $categories[$j]['href']; ?>"><?php echo $categories[$j]['name']; ?></a></div>
+  <?php if ($categories[$j]['children']) { ?>
+  <div class="cat vis">
+  <ul >
+  <?php $limit = 6; ?>
+  <?php   $count=count($categories[$j]['children']); ?>		  
+  <?php   for ($x=0; $x<$limit; $x++) { ?>
+  <?php if (isset ($categories[$j]['children'][$x]))  { ?>
+  <li>
+  <a href="<?php print_r ($categories[$j]['children'][$x]['href']); ?>"><?php print_r  ($categories[$j]['children'][$x]['name']); ?></a>
+  </li>
+  <?php } ?>
+  <?php } ?>	
+  <?php if ($limit<$count)  { ?>
+  <li class="vse"><a href="<?php echo $categories[$j]['href']; ?>"><?php echo $text_allcategory; ?></a></li>	
+  <?php } ?>
+  </ul>
   </div>
   <?php } ?>
+  </div>
+  <?php endif; ?>	
+  <?php endfor; ?>
+  <div style="clear: both;height: 0;weight: 0;margin: 0;"></div>
+  <?php endfor; ?>
+  </div>
+  </div>
+  </div>
+  <?php } ?>
+  <!-- end ocshop image categories and links child categories -->
   <?php if ($products) { ?>
-  
    <!-- ocshop -->
-  <?php if ($product_total>10) { ?>
   <div class="product-filter">
   <div class="display"><?php echo $text_list; ?> <b>/</b> <a onclick="display('grid');"><?php echo $text_grid; ?></a></div>
   <div class="limit">
@@ -83,9 +99,7 @@
   </ul>
   </div>
   </div>
-  <?php } ?>
   <!-- ocshop -->
-  
   <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>
   <?php echo $column_right; ?>
   <div class="product-list">

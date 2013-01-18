@@ -108,6 +108,9 @@ class ControllerProductCategory extends Controller {
 			}
 			
 			$this->data['text_refine'] = $this->language->get('text_refine');
+			//ocshop image categories and links child categories
+			$this->data['text_allcategory'] = $this->language->get('text_allcategory');
+			//end ocshop image categories and links child categories
 			$this->data['text_empty'] = $this->language->get('text_empty');			
 			$this->data['text_quantity'] = $this->language->get('text_quantity');
 			$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
@@ -175,7 +178,57 @@ class ControllerProductCategory extends Controller {
 								
 			$this->data['categories'] = array();
 			
-			$results = $this->model_catalog_category->getCategories($category_id);
+			//ocshop image categories and links child categories
+			//$results = $this->model_catalog_category->getCategories($category_id);
+			$categories = $this->model_catalog_category->getCategories($category_id);
+
+			foreach ($categories as $category) {
+
+			$children_data = array();
+
+			$children = $this->model_catalog_category->getCategories($category['category_id']);
+
+			foreach ($children as $child) {
+				$data = array(
+					'filter_category_id'  => $child['category_id'],
+					'filter_sub_category' => true
+				);		
+
+				$product_total = $this->model_catalog_product->getTotalProducts($data);
+
+				$children_data[] = array(
+					'category_id' => $child['category_id'],
+					'name'        => $child['name'],
+					'href'        => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])	
+				);					
+
+			}
+
+			$data = array(
+				'filter_category_id'  => $category['category_id'],
+				'filter_sub_category' => true	
+
+			);		
+
+			$product_total = $this->model_catalog_product->getTotalProducts($data);
+
+			if ($category['image']) {
+				$image=	$category['image'];
+				} else {
+					$image = 'no_image.jpg';
+				}
+			$image = $this->model_tool_image->resize($image, 110, 110);	
+
+			$this->data['categories'][] = array(
+				'category_id' => $category['category_id'],
+				'name'        => $category['name'],
+	     		'thumb'       => $image,
+				'children'    => $children_data,
+				'href'        => $this->url->link('product/category', 'path=' . $category['category_id'])
+			);
+
+			}
+			//end ocshop image categories and links child categories
 			
 			//ocshop sort manufacturer get manufacturers for child categories
 			$categoryids_with_childs = array();
@@ -200,8 +253,10 @@ class ControllerProductCategory extends Controller {
 					);			
 				}
 			}
-			//end ocshop sort manufacturer 
+			//end ocshop sort manufacturer
 			
+			//ocshop image categories and links child categories
+			/*
 			foreach ($results as $result) {
 				$data = array(
 					'filter_category_id'  => $result['category_id'],
@@ -219,6 +274,8 @@ class ControllerProductCategory extends Controller {
 					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
 				);
 			}
+			*/
+			//end ocshop image categories and links child categories
 			
 			$this->data['products'] = array();
 			

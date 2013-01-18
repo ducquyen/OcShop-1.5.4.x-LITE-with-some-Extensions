@@ -1701,3 +1701,62 @@ a.button:hover, input.button:hover {
 .sort  ul li .active a:hover, .limit  ul li .active  a:hover,
 .sort ul li a:hover, .limit  ul li a:hover,
 .sort  ul  a:hover {text-decoration: underline;}
+/* end sort */
+/* ocshop image categories and links child categories */
+.box-cat {
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.box-cat .box-imgcategory {
+    background: none repeat scroll 0 0 #FFFFFF;
+    position: relative;
+}
+.box-imgcat {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 760px;
+}
+.box-imgcat > div {
+	display: inline-block;
+	float: left;
+	margin-bottom: 20px;
+	margin-left: 15px;
+	margin-right: 15px;
+	vertical-align: top;
+	width: 160px;
+}
+.box-imgcat .image {
+    display: block;
+    margin-bottom: 0;
+}
+.box-imgcat .name a {
+    color: #333333;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+    text-decoration: none;
+}
+.box-imgcat .name a:hover {
+    text-decoration: underline;
+}
+.cat ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.cat li {
+    list-style: none outside none;
+}
+.cat a {
+    color: #3B5998;
+    text-decoration: none;
+}
+.cat a:hover {
+    text-decoration: underline;
+}
+.cat .vse a {
+    color: #333333;
+	text-decoration: underline;
+}
+/* end ocshop image categories and links child categories */

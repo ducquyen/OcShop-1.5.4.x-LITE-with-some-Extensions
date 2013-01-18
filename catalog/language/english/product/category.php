@@ -1,6 +1,9 @@
 <?php
 // Text
 $_['text_refine']       = 'Refine Search';
+//ocshop image categories and links child categories
+$_['text_allcategory']  = 'Show all';
+//end ocshop image categories and links child categories
 $_['text_product']      = 'Products';
 $_['text_error']        = 'Category not found!';
 $_['text_empty']        = 'There are no products to list in this category.';

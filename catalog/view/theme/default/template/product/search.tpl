@@ -58,7 +58,6 @@
   <h2><?php echo $text_search; ?></h2>
   <?php if ($products) { ?>
   <!-- ocshop -->
-  <?php if ($product_total>1) { ?>
   <div class="product-filter">
   <div class="display"><?php echo $text_list; ?> <b>/</b> <a onclick="display('grid');"><?php echo $text_grid; ?></a></div>
   <div class="limit">
@@ -98,7 +97,6 @@
   </ul>
   </div>
   </div>
-  <?php } ?>
   <!-- ocshop -->
   <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>
   <?php echo $column_right; ?>
