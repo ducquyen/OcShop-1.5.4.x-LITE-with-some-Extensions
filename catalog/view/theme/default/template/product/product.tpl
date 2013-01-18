@@ -232,12 +232,12 @@
     <a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
     <?php } ?>
 	<!-- ocshop youtube -->
-	<?php if ($attribute_groups) { ?>
-    <a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
-    <?php } ?>
-	<!-- end ocshop youtube -->
     <?php if ($youtube_code) { ?>
     <a href="#tab_youtube_code"><?php echo $tab_youtube_code; ?></a>
+    <?php } ?>
+	<!-- end ocshop youtube -->
+	<?php if ($review_status) { ?>
+    <a href="#tab-review"><?php echo $tab_review; ?></a>
     <?php } ?>
     <?php if ($products) { ?>
     <a href="#tab-related"><?php echo $tab_related; ?> (<?php echo count($products); ?>)</a>
