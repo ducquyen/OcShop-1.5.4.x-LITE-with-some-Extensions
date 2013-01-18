@@ -225,6 +225,9 @@ class ControllerProductProduct extends Controller {
 
 			if ($product_info['image']) {
 				$this->data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
+				//ocshop open graph meta tags
+				$this->document->setOgImage($this->data['thumb']);
+				//end ocshop open graph meta tags
 			} else {
 				$this->data['popup'] = '';
 			}

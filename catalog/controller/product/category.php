@@ -137,6 +137,9 @@ class ControllerProductCategory extends Controller {
 					
 			if ($category_info['image']) {
 				$this->data['thumb'] = $this->model_tool_image->resize($category_info['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
+				//ocshop open graph meta tags
+				$this->document->setOgImage($this->data['thumb']);
+				//end ocshop open graph meta tags
 			} else {
 				$this->data['thumb'] = '';
 			}

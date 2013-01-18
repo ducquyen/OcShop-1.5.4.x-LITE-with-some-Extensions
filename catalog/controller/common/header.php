@@ -64,6 +64,12 @@ class ControllerCommonHeader extends Controller {
 		} else {
 			$this->data['logo'] = '';
 		}
+		
+		//ocshop open graph meta tags
+		$this->data['og_url'] = (isset($this->request->server['HTTPS']) ? HTTPS_SERVER : HTTP_SERVER) . $this->request->server['REQUEST_URI'];
+		$this->data['og_image'] = $this->document->getOgImage();
+		//end ocshop open graph meta tags
+		
 		//ocshop
 		if ($this->config->get('config_contact') && file_exists(DIR_IMAGE . $this->config->get('config_contact'))) {
 			$this->data['contact'] = $server . $this->config->get('config_contact');

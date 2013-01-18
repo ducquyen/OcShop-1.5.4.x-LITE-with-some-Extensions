@@ -6,6 +6,9 @@ class Document {
 	private $links = array();		
 	private $styles = array();
 	private $scripts = array();
+	//ocshop open graph meta tags
+	private $og_image;
+	//end ocshop open graph meta tags
 	
 	public function setTitle($title) {
 		$this->title = $title;
@@ -61,5 +64,15 @@ class Document {
 	public function getScripts() {
 		return $this->scripts;
 	}
+	
+	//ocshop open graph meta tags
+	public function setOgImage($image) {
+		$this->og_image = $image;
+	}
+
+	public function getOgImage() {
+		return $this->og_image;
+	}
+	//end ocshop open graph meta tags
 }
 ?>
