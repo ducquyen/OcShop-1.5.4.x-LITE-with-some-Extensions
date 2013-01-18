@@ -1436,10 +1436,10 @@ class ControllerCatalogProduct extends Controller {
           );
         }
       } else {
-        $this->data['category_options_error'].= 'echo $filter_category_options_error';
+        $this->data['category_options_error'] = $this->language->get('filter_category_options_error');
       }
 		} else {
-      $this->data['category_options_error'] .= 'echo $filter_category_option_error';
+      $this->data['category_options_error'] = $this->language->get('filter_category_option_error');
     }
 
     if (isset($this->request->get['product_id'])) {
