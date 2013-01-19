@@ -44,6 +44,9 @@
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/colorbox/colorbox.css" media="screen" />
 <script type="text/javascript" src="catalog/view/javascript/jquery/tabs.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/common.js"></script>
+<!-- ocshop scrolltop -->
+<script type="text/javascript" src="catalog/view/javascript/jquery/scrolltopcontrol.js"></script>
+<!-- end ocshop scrolltop -->
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
