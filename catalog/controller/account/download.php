@@ -126,6 +126,10 @@ class ControllerAccountDownload extends Controller {
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
 			$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
+			
+			//ocshop 404 Not Found
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 404 Not Found');
+			//end ocshop 404 Not Found
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/error/not_found.tpl';

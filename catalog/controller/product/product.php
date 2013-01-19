@@ -484,6 +484,10 @@ class ControllerProductProduct extends Controller {
       		$this->data['text_error'] = $this->language->get('text_error');
 
       		$this->data['button_continue'] = $this->language->get('button_continue');
+			
+			//ocshop 404 Not Found
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 404 Not Found');
+			//end ocshop 404 Not Found
 
       		$this->data['continue'] = $this->url->link('common/home');
 

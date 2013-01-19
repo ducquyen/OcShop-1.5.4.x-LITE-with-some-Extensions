@@ -438,9 +438,9 @@ class ControllerProductManufacturer extends Controller {
 			$pagination->url = $this->url->link('product/manufacturer/info','manufacturer_id=' . $this->request->get['manufacturer_id'] .  $url . '&page={page}');
 			
 			$this->data['pagination'] = $pagination->render();
-			//ocshop
+			//ocshop sort
 			$this->data['product_total'] = $product_total;
-			//ocshop
+			//end ocshop sort
 			
 			$this->data['sort'] = $sort;
 			$this->data['order'] = $order;
@@ -502,6 +502,10 @@ class ControllerProductManufacturer extends Controller {
       		$this->data['button_continue'] = $this->language->get('button_continue');
 
       		$this->data['continue'] = $this->url->link('common/home');
+			
+			//ocshop 404 Not Found
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 404 Not Found');
+			//end ocshop 404 Not Found
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/error/not_found.tpl';

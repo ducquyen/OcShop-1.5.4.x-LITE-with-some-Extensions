@@ -399,6 +399,10 @@ class ControllerCheckoutCart extends Controller {
       		$this->data['button_continue'] = $this->language->get('button_continue');
 			
       		$this->data['continue'] = $this->url->link('common/home');
+			
+			//ocshop 404 Not Found
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 404 Not Found');
+			//end ocshop 404 Not Found
 
 			unset($this->session->data['success']);
 

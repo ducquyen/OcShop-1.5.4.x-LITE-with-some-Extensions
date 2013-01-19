@@ -50,6 +50,10 @@ class ControllerErrorNotFound extends Controller {
 		$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 404 Not Found');
 		
 		$this->data['continue'] = $this->url->link('common/home');
+		
+		//ocshop 404 Not Found
+		$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 404 Not Found');
+		//end ocshop 404 Not Found
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/error/not_found.tpl';
