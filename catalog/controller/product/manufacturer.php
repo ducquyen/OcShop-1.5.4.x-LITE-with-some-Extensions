@@ -88,8 +88,14 @@ class ControllerProductManufacturer extends Controller {
 										
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
+			//ocshop noindex follow
+			$this->document->setRobots('noindex,follow');
+			//end ocshop noindex follow
 		} else {
-			$sort = 'p.sort_order';
+			//ocshop sort price
+			//$sort = 'p.sort_order';
+			$sort = 'p.price';
+			//end ocshop sort price
 		} 
 
 		if (isset($this->request->get['order'])) {
@@ -100,12 +106,18 @@ class ControllerProductManufacturer extends Controller {
   		
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
+			//ocshop noindex follow
+			$this->document->setRobots('noindex,follow');
+			//end ocshop noindex follow
 		} else {
 			$page = 1;
 		}
 				
 		if (isset($this->request->get['limit'])) {
 			$limit = $this->request->get['limit'];
+			//ocshop noindex follow
+			$this->document->setRobots('noindex,follow');
+			//end ocshop noindex follow
 		} else {
 			$limit = $this->config->get('config_catalog_limit');
 		}

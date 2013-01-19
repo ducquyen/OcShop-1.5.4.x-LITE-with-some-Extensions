@@ -15,13 +15,22 @@ class ControllerProductCategory extends Controller {
 		
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
+			//ocshop noindex follow
+			$this->document->setRobots('noindex,follow');
+			//end ocshop noindex follow
 		} else {
-			$sort = 'p.sort_order';
+			//ocshop sort price
+			//$sort = 'p.sort_order';
+			$sort = 'p.price';
+			//end ocshop sort price
 		}
 		
 		//ocshop sort manufacturer
 		if (isset($this->request->get['manufacturer_filter'])) {
 			$manufacturer_filter = $this->request->get['manufacturer_filter'];
+			//ocshop noindex follow
+			$this->document->setRobots('noindex,follow');
+			//end ocshop noindex follow
 		} else {
 			$manufacturer_filter = 0;
 		}
@@ -36,6 +45,9 @@ class ControllerProductCategory extends Controller {
 		//ocshop sor product filter
 	    if (isset($this->request->get['filter'])) {
 	        $filter = $this->request->get['filter'];
+			//ocshop noindex follow
+			$this->document->setRobots('noindex,follow');
+			//end ocshop noindex follow
 	    } else {
 	        $filter = '';
 	    }
@@ -43,12 +55,18 @@ class ControllerProductCategory extends Controller {
 		
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
+			//ocshop noindex follow
+			$this->document->setRobots('noindex,follow');
+			//end ocshop noindex follow
 		} else { 
 			$page = 1;
 		}	
 							
 		if (isset($this->request->get['limit'])) {
 			$limit = $this->request->get['limit'];
+			//ocshop noindex follow
+			$this->document->setRobots('noindex,follow');
+			//end ocshop noindex follow
 		} else {
 			$limit = $this->config->get('config_catalog_limit');
 		}

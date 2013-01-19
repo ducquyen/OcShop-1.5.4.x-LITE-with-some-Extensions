@@ -11,7 +11,10 @@ class ControllerCommonHeader extends Controller {
 		
 		$this->data['description'] = $this->document->getDescription();
 		$this->data['keywords'] = $this->document->getKeywords();
-		$this->data['links'] = $this->document->getLinks();	 
+		$this->data['links'] = $this->document->getLinks();
+		//ocshop noindex follow
+		$this->data['robots'] = $this->document->getRobots();
+		//end ocshop noindex follow
 		$this->data['styles'] = $this->document->getStyles();
 		$this->data['scripts'] = $this->document->getScripts();
 		$this->data['lang'] = $this->language->get('code');

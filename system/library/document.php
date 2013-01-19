@@ -1,6 +1,9 @@
 <?php
 class Document {
 	private $title;
+	//ocshop noindex follow
+	private $robots;
+	//end ocshop noindex follow
 	private $description;
 	private $keywords;	
 	private $links = array();		
@@ -17,6 +20,16 @@ class Document {
 	public function getTitle() {
 		return $this->title;
 	}
+	
+	//ocshop noindex follow
+	public function setRobots($robots) {
+		$this->robots = $robots;
+	}
+	
+	public function getRobots() {
+		return $this->robots;
+	}
+	//end ocshop noindex follow
 	
 	public function setDescription($description) {
 		$this->description = $description;

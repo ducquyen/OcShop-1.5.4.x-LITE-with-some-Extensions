@@ -44,7 +44,10 @@ class ControllerProductSearch extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'p.sort_order';
+			//ocshop sort price
+			//$sort = 'p.sort_order';
+			$sort = 'p.price';
+			//end ocshop sort price
 		} 
 
 		if (isset($this->request->get['order'])) {
