@@ -54,8 +54,34 @@
     <?php foreach ($products as $product) { ?>
     <div>
       <?php if ($product['thumb']) { ?>
-      <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
-      <?php } ?>
+	  <div class="image">
+	  <!-- ocshop promo sticker -->
+		   <?php if ($product['quantity'] <= 0) { ?>
+		    <div>
+            <div class="sticker">
+            <div class="quantity-box">
+            </div>
+            <?php } ?>
+	       <?php if ($product['special']) { ?>
+            <div>
+            <div class="sticker">
+            <div class="special-box">
+            </div>
+            <?php } ?>
+	  <!-- end ocshop promo sticker -->
+      <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a>
+      <!-- ocshop promo sticker --> 
+			<?php if ($product['special']) { ?>
+            </div>
+            </div>
+            <?php } ?>
+			<?php if ($product['quantity'] <= 0) { ?>
+            </div>
+            </div>
+            <?php } ?>
+	   <!-- end ocshop promo sticker -->
+		</div>
+	  <?php } ?>
       <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
       <!-- ocshop description mini -->
       <!-- <div class="description"><?php echo $product['description']; ?></div> -->

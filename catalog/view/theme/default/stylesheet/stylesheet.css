@@ -1869,3 +1869,29 @@ color: #06bcc3;
 display: block;
 }
 /* end mega category home */
+/* promo sticker */
+.sticker {
+	position: relative;
+}
+.sticker .special-box {
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 5px;
+    background: url('../image/akcia.png') no-repeat;
+    width: 58px;
+    height: 58px;
+	left: 0px;
+	top: 0px;
+}
+.sticker .quantity-box {
+    position: absolute;
+    margin-top: 5px;
+    margin-right: 5px;
+    background: url('../image/soldout-icon.png') no-repeat;
+    width: 110px;
+    height: 70px;
+	right: 0px;
+	top: 0px;
+	z-index: 1;
+}
+/* end promo sticker */

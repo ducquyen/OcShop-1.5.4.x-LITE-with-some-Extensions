@@ -208,6 +208,9 @@ class ControllerProductProduct extends Controller {
 			
 			$this->data['product_id'] = $this->request->get['product_id'];
 			$this->data['manufacturer'] = $product_info['manufacturer'];
+			//ocshop promo sticker
+			$this->data['quantity'] = $product_info['quantity'];
+			//end ocshop promo sticker
 			$this->data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
 			$this->data['model'] = $product_info['model'];
 			$this->data['reward'] = $product_info['reward'];

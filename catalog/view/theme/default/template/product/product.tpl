@@ -10,8 +10,32 @@
     <?php if ($thumb || $images) { ?>
     <div class="left">
       <?php if ($thumb) { ?>
+	  <!-- ocshop promo sticker -->
+		   <?php if ($quantity == 0) { ?>
+		    <div>
+            <div class="sticker">
+            <div class="quantity-box">
+            </div>
+            <?php } ?>
+	       <?php if ($special) { ?>
+            <div>
+            <div class="sticker">
+            <div class="special-box">
+            </div>
+            <?php } ?>
+	  <!-- end ocshop promo sticker -->
       <div class="image"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox" rel="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a></div>
-      <?php } ?>
+           <!-- ocshop promo sticker --> 
+			<?php if ($special) { ?>
+            </div>
+            </div>
+            <?php } ?>
+			<?php if ($quantity == 0) { ?>
+            </div>
+            </div>
+            <?php } ?>
+	   <!-- end ocshop promo sticker -->	
+	  <?php } ?>
       <?php if ($images) { ?>
       <div class="image-additional">
         <?php foreach ($images as $image) { ?>
