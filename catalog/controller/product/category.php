@@ -2,7 +2,9 @@
 class ControllerProductCategory extends Controller {  
 	public function index() { 
 		$this->language->load('product/category');
-		
+		//ocshop stock status
+		$this->language->load('product/product');
+		//end ocshop stock status
 		$this->load->model('catalog/category');
 		
 		$this->load->model('catalog/product');
@@ -345,6 +347,17 @@ class ControllerProductCategory extends Controller {
 				} else {
 					$rating = false;
 				}
+				
+				//ocshop stock status
+				$stock = $this->language->get('') . ' ';
+				if ($result['quantity'] <= 0) {
+					$stock .= $result['stock_status'];
+				} elseif ($this->config->get('config_stock_display')) {
+					$stock .= $result['quantity'];
+				} else {
+					$stock .= $this->language->get('text_instock');
+				}
+				//end ocshop stock status
 								
 				$this->data['products'][] = array(
 					'product_id'  => $result['product_id'],
@@ -356,6 +369,10 @@ class ControllerProductCategory extends Controller {
 					//end ocshop description mini
 					'price'       => $price,
 					'special'     => $special,
+					//ocshop stock status
+					'stock'       => $stock,
+					'quantity'    => $result['quantity'],
+					//end ocshop stock status
 					'tax'         => $tax,
 					'rating'      => $result['rating'],
 					'reviews'     => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
