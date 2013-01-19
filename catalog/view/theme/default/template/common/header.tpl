@@ -58,6 +58,13 @@ DD_belatedPNG.fix('#logo img');
 </script>
 <![endif]-->
 <?php echo $google_analytics; ?>
+<!-- ocshop addtocopy -->
+<script src="catalog/view/javascript/addtocopy.js" type="text/javascript">
+  $(function(){
+	$("#content").addtocopy({htmlcopytxt: '<br><a href="'+window.location.href+'">'+window.location.href+'</a>', minlen:100, addcopyfirst: false});
+  });
+</script>
+<!-- end ocshop addtocopy -->
 </head>
 <body>
 <div id="menubg">

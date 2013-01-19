@@ -480,5 +480,23 @@ $('.datetime').datetimepicker({
 	timeFormat: 'h:m'
 });
 $('.time').timepicker({timeFormat: 'h:m'});
-//--></script> 
+//--></script>
+<!-- ocshop addtocopy -->
+<script type="text/javascript">
+  $(function(){
+	$("#content").addtocopy({htmlcopytxt: '<br><a href="'+window.location.href+'">'+window.location.href+'</a>', minlen:100, addcopyfirst: false});
+  });
+</script>
+<style>
+  #ctrlcopy {
+	height:1px;
+	overflow:hidden;
+	position:absolute;
+	width:1px;
+	margin: 5px 0 0 -1px;
+	line-height:0;
+	opacity: 0;
+  }
+</style>
+<!-- end ocshop addtocopy --> 
 <?php echo $footer; ?>
