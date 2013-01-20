@@ -101,6 +101,6 @@ $_['text_tax_rate'] = 'Податкові тарифи'; #39019
 $_['text_customer_blacklist'] = 'Чорний список IP'; #39144
 $_['text_report_customer_online'] = 'Користувачі онлайн'; #39468
 //ocshop cache manager
-$_['text_cachemanager']				   = 'Cache Manager';
+$_['text_cachemanager']				   = 'Кеш Менеджер';
 //ocshop cache manager
 ?>

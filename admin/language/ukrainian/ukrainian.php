@@ -121,3 +121,7 @@ $_['tab_customer'] = 'Інформація про покупця'; #39138
 $_['tab_fraud'] = 'Шахрайство'; #39139
 $_['tab_voucher'] = 'Ваучери'; #39140
 $_['button_update_total'] = 'Оновити суму'; #39141
+//ocshop
+$_['button_enable']           = 'Увімкнути';
+$_['button_disable']          = 'Вимкнути';
+//ocshop

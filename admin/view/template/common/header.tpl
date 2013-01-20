@@ -208,7 +208,7 @@ $(document).ready(function(){
 	  
       <li id="help"><a class="top"><?php echo $text_help; ?></a>
         <ul>
-          <li><a onClick="window.open('http://myopencart.ru');"><?php echo $text_opencart; ?></a></li>
+          <li><a onClick="window.open('http://ocshop.biz');"><?php echo $text_opencart; ?></a></li>
           <li><a onClick="window.open('http://opencartforum.ru/index.php?app=ccs');"><?php echo $text_documentation; ?></a></li>
           <li><a onClick="window.open('http://opencartforum.ru');"><?php echo $text_support; ?></a></li>
         </ul>
