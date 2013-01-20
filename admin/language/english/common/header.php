@@ -58,6 +58,9 @@ $_['text_report_customer_reward']      = 'Reward Points';
 $_['text_report_customer_credit']      = 'Credit';
 $_['text_report_affiliate_commission'] = 'Commission';
 $_['text_review']                      = 'Reviews';
+//ocshop test imonial
+$_['text_testimonial']       		   = 'Reviews Store';
+//end ocshop test imonial
 $_['text_return']                      = 'Returns';
 $_['text_return_action']               = 'Return Actions';
 $_['text_return_reason']               = 'Return Reasons';

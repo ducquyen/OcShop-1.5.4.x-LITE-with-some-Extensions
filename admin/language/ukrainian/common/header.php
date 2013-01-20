@@ -47,6 +47,9 @@ $_['text_opencart'] = 'Початок'; #36294
 $_['text_product'] = 'Товари'; #36295
 $_['text_reports'] = 'Звіти'; #36296
 $_['text_review'] = 'Відгуки'; #36297
+//ocshop test imonial
+$_['text_testimonial']       		   = 'Відгуки про Магазин';
+//end ocshop test imonial
 $_['text_sale'] = 'Продажі'; #36298
 $_['text_setting'] = 'Налаштування'; #36299
 $_['text_stock_status'] = 'Статуси на складі'; #36300

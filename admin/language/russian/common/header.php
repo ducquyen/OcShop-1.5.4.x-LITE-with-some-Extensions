@@ -58,6 +58,9 @@ $_['text_report_customer_reward']      = 'Бонусные баллы';
 $_['text_report_customer_credit']      = 'Кредит';
 $_['text_report_affiliate_commission'] = 'Комиссия';
 $_['text_review']                      = 'Отзывы';
+//ocshop test imonial
+$_['text_testimonial']       		   = 'Отзывы о Магазине';
+//end ocshop test imonial
 $_['text_return']                      = 'Возвраты';
 $_['text_return_action']               = 'Операции возврата';
 $_['text_return_reason']               = 'Причины возврата';
