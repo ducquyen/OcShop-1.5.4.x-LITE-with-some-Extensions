@@ -61,6 +61,9 @@ DD_belatedPNG.fix('#logo img');
 </script>
 <![endif]-->
 <?php echo $google_analytics; ?>
+<!-- ocshop popup cart -->
+<script type="text/javascript" src="catalog/view/javascript/popup.js"></script>
+<!-- end ocshop popup cart -->
 <!-- ocshop addtocopy -->
 <script src="catalog/view/javascript/addtocopy.js" type="text/javascript">
   $(function(){
