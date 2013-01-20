@@ -1,8 +1,10 @@
 <?php
 // Heading
-$_['heading_title']     = 'Фильтр товаров';
+$_['heading_title']       = 'Фильтр товаров';
 
+// Text
 $_['text_module']         = 'Модули';
+$_['text_success']        = 'Настройки модуля обновлены!';
 $_['text_content_top']    = 'Содержание шапки';
 $_['text_content_bottom'] = 'Содержание подвала';
 $_['text_column_left']    = 'Левая колонка';
@@ -15,12 +17,8 @@ $_['entry_status']        = 'Статус:';
 $_['entry_sort_order']    = 'Порядок сортировки:';
 
 // Buttons
-$_['button_create']     = 'Установить таблицы';
-
-// Text
-$_['text_module']       = 'Модули';
-$_['text_success']      = 'Настройки модуля обновлены!';
+$_['button_create']       = 'Установить таблицы';
 
 // Error
-$_['error_permission']    = 'У Вас нет прав для изменения модуля "Хиты продаж"!';
+$_['error_permission']    = 'У Вас нет прав для изменения модуля!';
 ?>
