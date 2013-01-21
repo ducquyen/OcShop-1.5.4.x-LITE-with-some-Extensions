@@ -130,9 +130,9 @@ class ControllerModulePopup extends Controller {
 		$this->data['popup_status'] = 'cart';
 
 		
-		$this->data['cart'] = $this->url->link('checkout/simplecheckout');
+		$this->data['cart'] = $this->url->link('checkout/checkout');
 						
-		$this->data['checkout'] = $this->url->link('checkout/simplecheckout', '', 'SSL');
+		$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 	
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/popup.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/module/popup.tpl';
