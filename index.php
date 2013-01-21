@@ -174,6 +174,11 @@ if (!isset($request->cookie['language']) || $request->cookie['language'] != $cod
 }			
 
 $config->set('config_language_id', $languages[$code]['language_id']);
+//ocshop seo_pro multilang
+$config->set('config_default_language', $config->get('config_language'));
+//end ocshop seo_pro multilang
+
+
 $config->set('config_language', $languages[$code]['code']);
 
 // Language	
