@@ -497,7 +497,8 @@ class ControllerCatalogProduct extends Controller {
 			}
 			
 			//ocshop filter product by category and manufacturer
-			$category = $this->model_catalog_product->getProductCategoriesInfo( $result['product_id'] );
+			$category = $this->model_catalog_product->getProductCategoriesInfo( $result['product_id'], $this->config->get('config_admin_language'));
+		
 			//ocshop filter product by category and manufacturer
 	
       		$this->data['products'][] = array(

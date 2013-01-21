@@ -665,11 +665,13 @@ class ModelCatalogProduct extends Model {
 	}
 	
 	//ocshop filter product by category and manufacturer
-	public function getProductCategoriesInfo($product_id) {			
+	public function getProductCategoriesInfo($product_id, $language='') {			
 		$product_category_data = array();
-					
-		$query = $this->db->query("SELECT c.*, cd.name FROM " . DB_PREFIX . "product_to_category c INNER JOIN " . DB_PREFIX . "category_description cd ON c.category_id = cd.category_id WHERE product_id = '" . (int)$product_id . "'");
+		$query = $this->db->query("SELECT c.*, cd.name FROM " . DB_PREFIX . "product_to_category c INNER JOIN " . DB_PREFIX . "category_description cd ON c.category_id = cd.category_id WHERE product_id = '" . (int)$product_id . "' AND cd.language_id = (SElECT language_id FROM ". DB_PREFIX ."language WHERE code='". $language ."')");
+	
+	
 		
+
 		foreach ($query->rows as $result) {	
 				$path = $this->model_catalog_category->getPath( $result['category_id'] );			
 				$product_category_data[] = array( 
@@ -760,6 +762,12 @@ class ModelCatalogProduct extends Model {
 				$sql .= " AND p2c.category_id = '" . (int)$data['filter_category_id'] . "'";
 			}
 		}
+		
+		//ocshop filter product by category and manufacturer
+			if (isset($data['filter_manufacturer']) && !is_null($data['filter_manufacturer'])) {
+				$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer'] . "'";
+			}	
+			//end ocshop filter product by category and manufacturer
 		
 		$query = $this->db->query($sql);
 		
