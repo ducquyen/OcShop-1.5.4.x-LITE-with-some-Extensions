@@ -69,7 +69,8 @@ class ControllerCommonHeader extends Controller {
 		}
 		
 		//ocshop open graph meta tags
-		$this->data['og_url'] = (isset($this->request->server['HTTPS']) ? HTTPS_SERVER : HTTP_SERVER) . $this->request->server['REQUEST_URI'];
+		$this->data['og_url'] = (isset($this->request->server['HTTPS']) ? HTTPS_SERVER : HTTP_SERVER) . ltrim ($this->request->server['REQUEST_URI'],'/');
+
 		$this->data['og_image'] = $this->document->getOgImage();
 		//end ocshop open graph meta tags
 		
