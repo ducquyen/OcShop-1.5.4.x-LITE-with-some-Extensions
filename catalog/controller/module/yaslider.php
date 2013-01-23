@@ -74,7 +74,7 @@ class ControllerModuleYaslider extends Controller {
 					'rating'    	=> $rating,
 					'description_mini' => html_entity_decode ($product_info['description_mini']),
 					'description_slider' => html_entity_decode ($product_info['description_slider']),
-					'description'	=> substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, $setting['description_length']) . '..',
+					'description'	=> utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, $setting['description_length']) . '..',
 					'reviews'   	=> sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
 					'href'    	=> $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
 				);
