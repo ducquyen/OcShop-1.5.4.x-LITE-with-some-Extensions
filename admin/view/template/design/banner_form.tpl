@@ -119,10 +119,18 @@ function image_upload(field, thumb) {
 			}
 		},	
 		bgiframe: false,
-		width: 700,
+		/* ocshop image manager
+		width: 800,
 		height: 400,
 		resizable: false,
-		modal: false
+		modal: false */
+		/*  ocshop image manager  */
+		width: 960,
+		height: 550,
+		resizable: false,
+		modal: false,
+		dialogClass: 'dlg'
+		/*  ocshop image manager  */
 	});
 };
 //--></script> 
