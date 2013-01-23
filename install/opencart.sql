@@ -1364,17 +1364,17 @@ CREATE TABLE `oc_layout` (
 -- 
 
 INSERT INTO `oc_layout` (`layout_id`, `name`) VALUES
-(1, 'Home'),
-(2, 'Product'),
-(3, 'Category'),
-(4, 'Default'),
-(5, 'Manufacturer'),
-(6, 'Account'),
-(7, 'Checkout'),
-(8, 'Contact'),
-(9, 'Sitemap'),
-(10, 'Affiliate'),
-(11, 'Information');
+(1, 'Главная Страница'),
+(2, 'Страница Товара'),
+(3, 'Категории'),
+(4, 'По Умолчанию'),
+(5, 'Производители'),
+(6, 'Личный Кабинет'),
+(7, 'Оформление Заказа'),
+(8, 'Контакты'),
+(9, 'Карта сайта'),
+(10, 'Кабинет Партнера'),
+(11, 'Информация');
 
 -- --------------------------------------------------------
 
@@ -1943,6 +1943,7 @@ CREATE TABLE `oc_order_status` (
 -- 
 
 INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
+(1, 1, 'Ожидание'),
 (2, 1, 'В обработке'),
 (3, 1, 'Доставлено'),
 (7, 1, 'Отменено'),
@@ -1953,10 +1954,10 @@ INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 (11, 1, 'Возмещенный'),
 (12, 1, 'Полностью измененный'),
 (13, 1, 'Полный возврат'),
-(1, 1, 'Ожидание'),
-(16, 1, 'Voided'),
-(15, 1, 'Processed'),
-(14, 1, 'Expired'),
+(14, 1, 'Срок оплаты истёк'),
+(15, 1, 'Заказ Обработан'),
+(16, 1, 'Заказ аннулирован'),
+(1, 2, 'Pending'),
 (2, 2, 'Processing'),
 (3, 2, 'Shipped'),
 (7, 2, 'Canceled'),
@@ -1967,10 +1968,9 @@ INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 (11, 2, 'Refunded'),
 (12, 2, 'Reversed'),
 (13, 2, 'Chargeback'),
-(1, 2, 'Pending'),
-(16, 2, 'Voided'),
+(14, 2, 'Expired'),
 (15, 2, 'Processed'),
-(14, 2, 'Expired');
+(16, 2, 'Voided');
 
 -- --------------------------------------------------------
 
@@ -2655,9 +2655,9 @@ CREATE TABLE `oc_return_action` (
 -- 
 
 INSERT INTO `oc_return_action` (`return_action_id`, `language_id`, `name`) VALUES
-(1, 1, 'Refunded'),
-(2, 1, 'Credit Issued'),
-(3, 1, 'Replacement Sent'),
+(1, 1, 'Возвращено'),
+(2, 1, 'Выдан в кредит'),
+(3, 1, 'Отправлен другой товар'),
 (1, 2, 'Refunded'),
 (2, 2, 'Credit Issued'),
 (3, 2, 'Replacement Sent');
@@ -2702,11 +2702,11 @@ CREATE TABLE `oc_return_reason` (
 -- 
 
 INSERT INTO `oc_return_reason` (`return_reason_id`, `language_id`, `name`) VALUES
-(1, 1, 'Dead On Arrival'),
-(2, 1, 'Received Wrong Item'),
-(3, 1, 'Order Error'),
-(4, 1, 'Faulty, please supply details'),
-(5, 1, 'Other, please supply details'),
+(1, 1, 'Испорчен по прибытию'),
+(2, 1, 'Отправлен не по адресу'),
+(3, 1, 'Заказ по ошибке'),
+(4, 1, 'Неисправность. Опишите'),
+(5, 1, 'Другое. Укажите причину'),
 (1, 2, 'Dead On Arrival'),
 (2, 2, 'Received Wrong Item'),
 (3, 2, 'Order Error'),
@@ -2732,9 +2732,9 @@ CREATE TABLE `oc_return_status` (
 -- 
 
 INSERT INTO `oc_return_status` (`return_status_id`, `language_id`, `name`) VALUES
-(1, 1, 'Pending'),
-(3, 1, 'Complete'),
-(2, 1, 'Awaiting Products'),
+(1, 1, 'На рассмотрении'),
+(3, 1, 'Завершен'),
+(2, 1, 'Ожидание товара'),
 (1, 2, 'Pending'),
 (3, 2, 'Complete'),
 (2, 2, 'Awaiting Products');
