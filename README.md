@@ -1,69 +1,63 @@
+Changes made:
 
-ocShop Edition (http://ocshop.biz) на основе Opencart \ ocStore
-
-Демо: http://free.ocshop.biz
-
-Внесенные изменения:
-
-1. изменен header
-2. в меню header добавлен вывод 3го уровня категорий
-3. в административной части система -> настройки -> изображения: добавлена возможность загрузки изображения с контактами и организован вывод на сайте
-4. в административной части добавлено авто заполнение seo url \ чпу
-5. в административной части каталог -> товары: добавлен фильтр по категории и производителю товаров
-6. в административной части система -> настройки -> витрина: добавлен ввод ключевых слов и организован вывод на сайте
-7. в административной части категории\товары\информация\отзывы: добавлены кнопки включение\выключение
-8. в административной части категории\производители\товары\информация\отзывы\опции\атрибуты: продублировано меню под списком
-9. внесены незначительные правки в языковые файлы
-10. удален английский язык
-11. добавлен модуль производители логика модуля: в категории выводятся только те производители товары которых представлены в данной категории, при переходе в производителя товары выводятся с учетом категория\производитель.
-12. исправлен вывод H1 в категории\производителе\товаре...
-13. изменен вид сортировки в категории\производителе
-14. изменен вид пагинации
-15. добавлена сортировка по просмотрам \ популярности товаров
-16. в административной части добавлено название каталог -> Товара\Категории\Производители в Header
-17. в административной части изменен формат даты - добавлены часы и минуты создания заказа \ регистрации пользователя ...
-18. в административной части добавлена подсветка активной строки
-19. в пользовательской части в карточке товара изменено построение хлеьных крошек при выбранной главной категории последней ссылкой вместо названия товара теперь выводится производитель и при переходе по ссылке товары выводятся с учетом главная категория\производитель
-20. в административной части в листинге товаров добавлено редактирование изображения\названия\модели\цены\количества и изменение статуса включено\отключено
-21. внесены изменения в дизайн административной части
-	- уменьшен header.tpl
-	- в дашбоард добавлен скрипт показывающий\скрывающий статистику
-	- добавлены кнопки быстрого перехода в товары\категории\производители\заказы\покупатели
-22. в административной части установлен ckeditor версии 4
-23. в административной части установлен image manager pro
-24. в административной части установлен Кэш Менеджер удаление Системного Кэша и Изображений
-25. в административной части установлен SEO Manager
-	в запросе при установке добавляются SEO Keyword:
-	- specials
-	- brands
-	- contact-us
-	- sitemap
-26. Интегрирован фильтр товаров sora
-27. Добавлено краткое описание в категориях \ производителях \ поиске \ акциях
-28. Добавлен Таб Видео в карточке товара
-29. Изображения категорий 2го уровня и ссылки на категории 3го уровня
-30. Модуль Категории\Подкатегории для Главной страницы
-31. В отзывах убран ajax отзывы теперь индексируются
-32. Добавлены теги noindex follow для страниц пагинации сортировки фильтра и производителей корректировка robots.txt
-33. Сортировка по цене по умолчанию
-34. Количество Отзывов в категориях \ производителях \ поиске \ акциях
-35. Наличие товара в категориях \ производителях \ поиске \ акциях
-36. Добавлен скрипт AddToCopy добавляющий ссылку при копировании контента
-37. Добавлен статус 404 для отключенных товаров \ категорий \ производителей \ статей \ страниц ошибок
-38. Удален h1 на главной странице который был скрыт в display: none;
-39. Добавлен скрипт прокрутки страницы вверх
-40. Добавлены промо стикеры Акция и Продано в товарах \ категориях \ производителях \ акциях \ поиске
-41. Добавлен Модуль HTML добавлено условие отображения стиля блока когда нет заголовка
-42. Добавлен Модуль Табы 4 в одном Новинки \ Акции \ Рекомендуемые \ Хиты продаж
-43. Добавлен Модуль отзывы о Магазине
-44. Добавлен Модуль последние отзывы
-45. Добавлен Модуль попап корзины \ сравнения \ заметок
-46. Добавлен yaSlider Pro (выводит текст описания \ краткого описания \ текст из поля яСлайдер в продукте)
-47. Детализированное уведомление о заказе администратору магазина
-48. Модификация seo_pro
-	- добавлен слеш в категориях \ производителях (оставлена возможность для производителей .html)
-	- редирект со страниц без seo url на страницы с ним
-	- правильная мультиязычность у дополнительных языков добавляется /ua /en и так далее
-49. Добавлен способ оплаты Наложенный платеж
-50. Добавлен способ доставки Новая Почта
-51. Добавлен способ доставки Курьером по городу в зависимости от суммы заказа
+     changed header
+     The 3rd category category output has been added to the header menu.
+     in the administrative part of the system -> settings -> images: added the ability to download images with contacts and organized output on the site
+     in the administrative part added auto filling seo url \ cnc
+     in the administrative part of the catalog -> goods: added filter by category and manufacturer of goods
+     in the administrative part of the system -> settings -> showcase: added input keywords and organized output on the site
+     in the administrative part of the category \ products \ information \ reviews: buttons on / off added
+     in the administrative part of the category \ manufacturers \ products \ information \ reviews \ options \ attributes: the menu under the list is duplicated
+     minor edits made to language files
+     removed English
+     module manufacturers module logic is added: only those manufacturers whose products are presented in this category are displayed in the category, when switching to the manufacturer, the products are displayed taking into account the category / manufacturer.
+     Fixed H1 output in the category \ manufacturer \ product ...
+     changed sorting type in category \ manufacturer
+     pagination view changed
+     Added sorting by views \ product popularity
+     The name of the catalog has been added in the administrative part -> Goods \ Categories \ Manufacturers in Header
+     Date format has been changed in the administrative part - hours and minutes for creating an order / user registration have been added ...
+     in the administrative part added highlighting of the active line
+     in the user part in the product card, the construction of the breadcrumbs is changed when the main category is selected by the last link instead of the product name, the manufacturer is now displayed and when clicking on the link, the products are displayed taking into account the main category \ manufacturer
+     in the administrative part of the listing of goods added image editing \ name \ model \ price \ quantity and status change enabled \ disabled
+     changes in the design of the administrative part
+         reduced header.tpl
+         a script showing / hiding statistics has been added to the dashboard
+         Added buttons to quickly jump to products \ categories \ manufacturers \ orders \ buyers
+     ckeditor version 4 is installed in the administrative part
+     image manager pro is installed in the administrative part
+     in the administrative part, the cache manager is installed, deleting the system cache and images
+     in the administrative part, the SEO Manager is installed in the request; the SEO Keyword is added during the installation:
+         specials
+         brands
+         contact-us
+         sitemap
+     Integrated sora product filter
+     Added a short description in the categories \ manufacturers \ search \ promotions
+     Added Tab Video in the product card
+     Images of 2nd level categories and links to 3rd level categories
+     Module Categories \ Subcategories for Home Page
+     Ajax reviews removed in reviews are now indexed
+     Added noindex follow tags for filter sorting pagination pages and manufacturers robots.txt adjustment
+     Sort by default price
+     Number of Reviews in categories \ manufacturers \ search \ promotions
+     Product availability in categories \ manufacturers \ search \ promotions
+     Added script AddToCopy add link when copying content
+     Added status 404 for disabled products \ categories \ manufacturers \ articles \ error pages
+     Removed h1 on the main page which was hidden in display: none;
+     Added script scroll page up
+     Added promo stickers Promotion and Sold in products \ categories \ manufacturers \ promotions \ search
+     Added HTML module added condition to display block style when there is no title
+     Added Taba 4 Module in one New \ Shares \ Recommended \ Bestsellers
+     Added Store Feedback Module
+     Added module latest reviews
+     Added Module Cart Recycle \ Compare \ Notes
+     Added yaSlider Pro (displays description text \ short description \ text from the Slider field in the product)
+     Detailed notification of the order to the store administrator
+     Modification seo_pro
+         slash added in categories / manufacturers (left for manufacturers .html left)
+         redirect from pages without seo url to pages with it
+         correct multilanguage for additional languages ​​is added / ua / en and so on
+     Payment method added Cash on delivery
+     Added delivery method New Mail
+     Added courier delivery method for the city depending on the amount of the order
